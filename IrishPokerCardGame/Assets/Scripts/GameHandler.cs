@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class GameHandler : MonoBehaviour
 
     public List<string> deck;
     public List<string> restOfDeck;
+
+    public GameObject button1;
+    public GameObject button2;
+    public GameObject button3;
+    public GameObject button4;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +37,7 @@ public class GameHandler : MonoBehaviour
 
     public void startPlaying()
     {
+        setUpButtons();
         deck = GenerateDeck();
         ShuffleDeck(deck);
         Deal();
@@ -79,5 +87,18 @@ public class GameHandler : MonoBehaviour
         {
             restOfDeck.Add(deck[i]);
         }
+    }
+
+    public void setUpButtons()
+    {
+    button1 = GameObject.Find("Button1");
+    button2 = GameObject.Find("Button2");
+    button3 = GameObject.Find("Button3");
+    button4 = GameObject.Find("Button4");
+
+    button3.SetActive(false);
+    button4.SetActive(false);
+    button1.GetComponentInChildren<Text>().text = "Red";
+    button2.GetComponentInChildren<Text>().text = "Black";
     }
 }
