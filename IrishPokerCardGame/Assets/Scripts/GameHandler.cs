@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Globalization;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +15,7 @@ public class GameHandler : MonoBehaviour
 
     public List<string> deck;
     public List<string> restOfDeck;
+    public int round = 1;
 
     public GameObject button1;
     public GameObject button2;
@@ -34,7 +33,11 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (round == 1)
+        {
+            button1.GetComponent<Button>().onClick.AddListener(CheckRed);
+            button2.GetComponent<Button>().onClick.AddListener(CheckBlack);
+        }
     }
 
     public void startPlaying()
@@ -104,5 +107,17 @@ public class GameHandler : MonoBehaviour
     button1.GetComponentInChildren<Text>().text = "Red";
     button2.GetComponentInChildren<Text>().text = "Black";
 
+    }
+
+    public void CheckRed()
+    {
+        print("red");
+        round++;
+    }
+
+    public void CheckBlack()
+    {
+        print("black");
+        round++;
     }
 }

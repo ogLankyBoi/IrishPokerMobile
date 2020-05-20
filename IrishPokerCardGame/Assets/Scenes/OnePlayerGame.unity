@@ -1057,10 +1057,12 @@ MonoBehaviour:
     type: 3}
   deck: []
   restOfDeck: []
+  round: 1
   button1: {fileID: 0}
   button2: {fileID: 0}
   button3: {fileID: 0}
   button4: {fileID: 0}
+  dialogueText: {fileID: 0}
 --- !u!4 &1338332738
 Transform:
   m_ObjectHideFlags: 0
@@ -1222,14 +1224,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'You are drinking alone.
-
-    How sad.
-
-
-
-    Is your first card red or
-    black?'
+  m_Text: Is your first card red or black?
 --- !u!222 &1508927842
 CanvasRenderer:
   m_ObjectHideFlags: 0
