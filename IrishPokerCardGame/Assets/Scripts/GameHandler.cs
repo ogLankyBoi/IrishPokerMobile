@@ -30,7 +30,7 @@ public class GameHandler : MonoBehaviour
     {
         deck = GenerateDeck();
         ShuffleDeck(deck);
-        //Deal(deck);
+        Deal();
     }
 
     public static List<string> GenerateDeck()
@@ -61,13 +61,14 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-/*    void Deal(string[] deck)
+    void Deal()
     {
         float xOffset = 0;
         for(int i = 0; i < 4; i++)
         {
-            GameObject newCard = Instantiate(cardPrefab, new Vector3(transform.position.x + xOffset, transform.position.y, transform.position.z), Quaternion.identity);
+            GameObject newCard = Instantiate(cardPrefab, new Vector3(160 + xOffset, 200, 0), Quaternion.identity);
             newCard.name = deck[i];
+            xOffset = xOffset + 250;
         }
-    }*/
+    }
 }
