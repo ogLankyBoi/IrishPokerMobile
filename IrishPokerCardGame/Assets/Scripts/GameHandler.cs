@@ -23,6 +23,8 @@ public class GameHandler : MonoBehaviour
     public GameObject button3;
     public GameObject button4;
 
+    public GameObject dialogueText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class GameHandler : MonoBehaviour
 
     public void startPlaying()
     {
+        dialogueText = GameObject.Find("DialogueText");
         setUpButtons();
         deck = GenerateDeck();
         ShuffleDeck(deck);
@@ -100,5 +103,6 @@ public class GameHandler : MonoBehaviour
     button4.SetActive(false);
     button1.GetComponentInChildren<Text>().text = "Red";
     button2.GetComponentInChildren<Text>().text = "Black";
+
     }
 }
