@@ -10,6 +10,7 @@ public class UpdateCardSprite : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private GameHandler gameHandler;
+    private Seeable seeable;
 
     // Start is called before the first frame update
     void Start()
@@ -28,11 +29,19 @@ public class UpdateCardSprite : MonoBehaviour
             i++;
         }
         spriteRenderer = GetComponent<SpriteRenderer>();
+        seeable = GetComponent<Seeable>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (seeable.faceUp == false)
+        {
+            spriteRenderer.sprite = cardBack;
+        }
+        else if (seeable.faceUp == true)
+        {
+            spriteRenderer.sprite = cardFace;
+        }
     }
 }

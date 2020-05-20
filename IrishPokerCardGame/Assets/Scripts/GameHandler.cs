@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
@@ -13,6 +14,7 @@ public class GameHandler : MonoBehaviour
     public static string[] values = new string[] { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 
     public List<string> deck;
+    public List<string> restOfDeck;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +70,14 @@ public class GameHandler : MonoBehaviour
         {
             GameObject newCard = Instantiate(cardPrefab, new Vector3(160 + xOffset, 200, 0), Quaternion.identity);
             newCard.name = deck[i];
+            //newCard.tag = "Player1Card" + i.ToString();
+            newCard.GetComponent<Seeable>().faceUp = true;
+
             xOffset = xOffset + 250;
+        }
+        for(int i = 4; i < 52; i++)
+        {
+            restOfDeck.Add(deck[i]);
         }
     }
 }
