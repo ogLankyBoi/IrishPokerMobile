@@ -9,6 +9,7 @@ public class GameHandler : MonoBehaviour
 {
     public Sprite[] cardFaces;
     public GameObject cardPrefab;
+    public SceneChanger sceneChanger;
 
     public static string[] suits = new string[] { "C", "D", "H", "S" };
     public static string[] values = new string[] { "A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K" };
@@ -38,6 +39,7 @@ public class GameHandler : MonoBehaviour
 
     public void startPlaying()
     {
+        sceneChanger = GetComponent<SceneChanger>();
         dialogueText = GameObject.Find("DialogueText");
         setUpButtons();
         deck = GenerateDeck();
@@ -506,5 +508,10 @@ public class GameHandler : MonoBehaviour
         button2.SetActive(false);
         button3.SetActive(false);
         button4.SetActive(false);
+    }
+
+    public void OnInGameSettingsButton()
+    {
+        sceneChanger.SceneLoad("MainMenu");
     }
 }
