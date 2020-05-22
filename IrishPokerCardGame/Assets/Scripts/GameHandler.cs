@@ -123,6 +123,10 @@ public class GameHandler : MonoBehaviour
         {
             whatSuit(1);
         }
+        else if (round == 5)
+        {
+            sceneChanger.SceneLoad("OnePlayerGame");
+        }
     }
 
     public void OnButton2()
@@ -142,6 +146,10 @@ public class GameHandler : MonoBehaviour
         else if (round == 4)
         {
             whatSuit(2);
+        }
+        else if (round == 5)
+        {
+            sceneChanger.SceneLoad("MainMenu");
         }
     }
 
@@ -504,10 +512,11 @@ public class GameHandler : MonoBehaviour
             }
         }
 
-        button1.SetActive(false);
-        button2.SetActive(false);
         button3.SetActive(false);
         button4.SetActive(false);
+        button1.GetComponentInChildren<Text>().text = "Again";
+        button2.GetComponentInChildren<Text>().text = "Exit";
+        round++;
     }
 
     public void OnInGameSettingsButton()
