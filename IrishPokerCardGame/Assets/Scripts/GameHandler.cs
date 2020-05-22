@@ -389,7 +389,7 @@ public class GameHandler : MonoBehaviour
 
         if (buttonNum == 1)
         {
-            if (card3Value > highCard && card3Value < lowCard)
+            if (card3Value > highCard || card3Value < lowCard)
             {
                 dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
             }
