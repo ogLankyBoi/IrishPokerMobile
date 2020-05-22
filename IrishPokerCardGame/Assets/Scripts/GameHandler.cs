@@ -380,13 +380,13 @@ public class GameHandler : MonoBehaviour
             {
                 dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
             }
-            else if (card3Value < highCard && card3Value > lowCard)
+            else if (card3Value == highCard || card3Value == lowCard)
             {
-                dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + card3Value + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + card3Value * 2 + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
             }
             else
             {
-                dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + card3Value * 2 + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + card3Value + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
             }
         }
         else if (buttonNum == 2)
@@ -395,13 +395,13 @@ public class GameHandler : MonoBehaviour
             {
                 dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
             }
-            else if (card3Value > highCard && card3Value < lowCard)
+            else if (card3Value == highCard || card3Value == lowCard)
             {
-                dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + card3Value + " times." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + card3Value * 2 + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
             }
             else
             {
-                dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + card3Value * 2 + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + card3Value + " times." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
             }
         }
 
