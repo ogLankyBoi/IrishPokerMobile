@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuHandlerScr : MonoBehaviour
+public class SettingsHandlerScr : MonoBehaviour
 {
 
     public SceneChanger sceneChanger;
@@ -19,18 +19,8 @@ public class MenuHandlerScr : MonoBehaviour
         
     }
 
-    public void OnPlayButton()
+    public void OnBackButton()
     {
-        sceneChanger.SceneLoad("PlayMenu");
-    }
-
-    public void OnSettingsButton()
-    {
-        sceneChanger.SceneLoad("SettingsMenu");
-    }
-
-    public void OnHowToButton()
-    {
-        sceneChanger.SceneLoad("HowToPlay");
+        sceneChanger.SceneLoad("MainMenu");
     }
 }
