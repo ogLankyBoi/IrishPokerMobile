@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TouchMoveCamera : MonoBehaviour
 {
-    public float speed;
+    public float panSpeed, zoomSpeed, zoomOutMin, zoomOutMax;
 
     // Start is called before the first frame update
     void Start()
@@ -15,11 +15,11 @@ public class TouchMoveCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             // Move camera by dragging finger 
             Vector2 touchDeltaPos = Input.GetTouch(0).deltaPosition;
-            transform.Translate(-touchDeltaPos.x * speed, -touchDeltaPos.y * speed, 0);
+            transform.Translate(-touchDeltaPos.x * panSpeed, -touchDeltaPos.y * panSpeed, 0);
 
             // Keep camera from going off the Table Top
             transform.position = new Vector3(
@@ -27,6 +27,25 @@ public class TouchMoveCamera : MonoBehaviour
                 Mathf.Clamp(transform.position.y, -11.0f, 11.0f),
                 -1.0f
             );
+        }else if(Input.touchCount == 2)
+        {
+            Touch firstTouch = Input.GetTouch(0);
+            Touch secondTouch = Input.GetTouch(1);
+
+            Vector2 prevFirstTouchPos = firstTouch.position - firstTouch.deltaPosition;
+            Vector2 prevSecondTouchPos = secondTouch.position - secondTouch.deltaPosition;
+
+            float prevMagnitude = (prevFirstTouchPos - prevSecondTouchPos).magnitude;
+            float currMagnitude = (firstTouch.position - secondTouch.position).magnitude;
+
+            float difference = currMagnitude - prevMagnitude;
+
+            Zoom(difference * zoomSpeed);
         }
+    }
+
+    void Zoom(float increment)
+    {
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - increment, zoomOutMin, zoomOutMax);
     }
 }
