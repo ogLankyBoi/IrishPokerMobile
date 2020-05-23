@@ -29,7 +29,7 @@ public class GameHandler : MonoBehaviour
 
     public GameObject dialogueText;
     public GameObject dialogueBox;
-    public GameObject inGameOptions;
+    //public GameObject inGameOptions;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +44,8 @@ public class GameHandler : MonoBehaviour
         sceneChanger = GetComponent<SceneChanger>();
         dialogueText = GameObject.Find("DialogueText");
         dialogueBox = GameObject.Find("DialogBox");
-        inGameOptions = GameObject.Find("InGameOptions");
-        inGameOptions.SetActive(false);
+        //inGameOptions = GameObject.Find("InGameOptions");
+        //inGameOptions.SetActive(false);
         setUpButtons();
         deck = GenerateDeck();
         ShuffleDeck(deck);
@@ -527,12 +527,12 @@ public class GameHandler : MonoBehaviour
     public void OnInGameSettingsButton()
     {
         
-        dialogueBox.SetActive(false);
-        inGameOptions.SetActive(true);
+        //dialogueBox.SetActive(false);
+        //inGameOptions.SetActive(true);
         
     }
 
-    public void OnCloseOptionsButton()
+    /*public void OnCloseOptionsButton()
     {
         dialogueBox.SetActive(true);
         inGameOptions.SetActive(false);
@@ -541,5 +541,5 @@ public class GameHandler : MonoBehaviour
     public void OnLeaveGameButton()
     {
         sceneChanger.SceneLoad("MainMenu");
-    }
+    }*/
 }
