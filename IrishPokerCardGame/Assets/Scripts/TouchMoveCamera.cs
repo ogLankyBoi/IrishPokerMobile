@@ -5,6 +5,7 @@ using UnityEngine;
 public class TouchMoveCamera : MonoBehaviour
 {
     public float panSpeed, zoomSpeed, zoomOutMin, zoomOutMax;
+    Vector3 touchStart;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +16,25 @@ public class TouchMoveCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        // For mouse and touch
+        if (Input.GetMouseButtonDown(0))
+        {
+            touchStart = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 direction = touchStart - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Camera.main.transform.position += direction;
+
+            transform.position = new Vector3(
+                Mathf.Clamp(transform.position.x, -17.0f, 17.0f),
+                Mathf.Clamp(transform.position.y, -11.0f, 11.0f),
+                -1.0f
+            );
+        }
+/*
+        // Specfically for touch
+        if(Input.touchCount >= 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             // Move camera by dragging finger 
             Vector2 touchDeltaPos = Input.GetTouch(0).deltaPosition;
@@ -27,7 +46,10 @@ public class TouchMoveCamera : MonoBehaviour
                 Mathf.Clamp(transform.position.y, -11.0f, 11.0f),
                 -1.0f
             );
-        }else if(Input.touchCount == 2)
+        }
+*/
+        // Pinch to zoom
+        if (Input.touchCount == 2)
         {
             Touch firstTouch = Input.GetTouch(0);
             Touch secondTouch = Input.GetTouch(1);
