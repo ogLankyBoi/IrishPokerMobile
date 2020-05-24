@@ -128,7 +128,6 @@ public class LocalPlayMenuHandlerScr : MonoBehaviour
                 if (player1Name.GetComponent<InputField>().text != "" && player2Name.GetComponent<InputField>().text != "" && player3Name.GetComponent<InputField>().text != "")
                 {
                     //sceneChanger.SceneLoad("Local3PGame");
-                    print("it worked");
                 }
                 else
                 {
