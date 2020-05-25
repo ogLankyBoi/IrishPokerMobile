@@ -9,14 +9,14 @@ public class UpdateCardSprite : MonoBehaviour
     public Sprite cardBack;
 
     private SpriteRenderer spriteRenderer;
-    private GameHandler gameHandler;
+    private Local2PHandlerScr gameHandler;
     private Seeable seeable;
 
     // Start is called before the first frame update
     void Start()
     {
-        List<string> deck = GameHandler.GenerateDeck();
-        gameHandler = FindObjectOfType<GameHandler>();
+        List<string> deck = Local2PHandlerScr.GenerateDeck();
+        gameHandler = FindObjectOfType<Local2PHandlerScr>();
 
         int i = 0;
         foreach (string card in deck)
