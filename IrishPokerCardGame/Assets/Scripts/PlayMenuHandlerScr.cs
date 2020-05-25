@@ -30,7 +30,7 @@ public class PlayMenuHandlerScr : MonoBehaviour
 
     public void OnJoinButton()
     {
-        print("3");
+        sceneChanger.SceneLoad("JoinGame");
     }
 
     public void OnBackButton()

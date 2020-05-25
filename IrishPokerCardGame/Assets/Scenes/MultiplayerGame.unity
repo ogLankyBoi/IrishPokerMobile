@@ -403,8 +403,6 @@ GameObject:
   m_Component:
   - component: {fileID: 702141044}
   - component: {fileID: 702141042}
-  - component: {fileID: 702141041}
-  - component: {fileID: 702141045}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -412,21 +410,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &702141041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702141040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUI: 1
-  offsetX: 0
-  offsetY: 0
 --- !u!114 &702141042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,37 +466,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &702141045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702141040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c2d82f235e519a44b426c75455eb331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 1
-  runInBackground: 1
-  startOnHeadless: 1
-  showDebugMessages: 0
-  serverTickRate: 30
-  offlineScene: 
-  onlineScene: 
-  transport: {fileID: 702141042}
-  networkAddress: localhost
-  maxConnections: 4
-  disconnectInactiveConnections: 0
-  disconnectInactiveTimeout: 60
-  authenticator: {fileID: 0}
-  playerPrefab: {fileID: 6381322821400527763, guid: 444af85d5adff1a418b47a836c9e697a,
-    type: 3}
-  autoCreatePlayer: 1
-  playerSpawnMethod: 0
-  spawnPrefabs: []
-  newClientSpawnPos: {x: 12, y: 12, z: 0}
 --- !u!1 &1290577666
 GameObject:
   m_ObjectHideFlags: 0
