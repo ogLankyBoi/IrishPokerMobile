@@ -117,7 +117,7 @@ public class LocalPlayMenuHandlerScr : MonoBehaviour
             case 2:
                 if (player1Name.GetComponent<InputField>().text != "" && player2Name.GetComponent<InputField>().text != "")
                 {
-                    //sceneChanger.SceneLoad("Local2PGame");
+                    sceneChanger.SceneLoad("Local2PGame");
                 }
                 else
                 {

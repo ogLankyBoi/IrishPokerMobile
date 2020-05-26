@@ -20,7 +20,7 @@ public class PlayMenuHandlerScr : MonoBehaviour
 
     public void OnSoloButton()
     {
-        sceneChanger.SceneLoad("OnePlayerGame");
+        sceneChanger.SceneLoad("LocalPlayMenu");
     }
 
     public void OnCreateButton()

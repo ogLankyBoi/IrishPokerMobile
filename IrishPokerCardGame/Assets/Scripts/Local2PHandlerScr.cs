@@ -12,7 +12,7 @@ public class Local2PHandlerScr : MonoBehaviour
     public SceneChanger sceneChanger;
 
     public static string[] suits = new string[] { "C", "D", "H", "S" };
-    public static string[] values = new string[] { "A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K" };
+    public static string[] values = new string[] { "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A" };
 
     public List<string> deck;
     public List<string> restOfDeck;
@@ -26,11 +26,11 @@ public class Local2PHandlerScr : MonoBehaviour
     public GameObject button2;
     public GameObject button3;
     public GameObject button4;
+    public GameObject continueButton;
 
     public GameObject dialogueText;
     public GameObject dialogueBox;
     public GameObject inGameOptions;
-    public GameObject cardPlaceHolder;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,6 @@ public class Local2PHandlerScr : MonoBehaviour
         dialogueText = GameObject.Find("DialogueText");
         dialogueBox = GameObject.Find("DialogBox");
         inGameOptions = GameObject.Find("InGameOptions");
-        cardPlaceHolder = GameObject.Find("cardPlaceHolder");
         inGameOptions.SetActive(false);
     }
 
@@ -226,9 +225,11 @@ public class Local2PHandlerScr : MonoBehaviour
         button2 = GameObject.Find("Button2");
         button3 = GameObject.Find("Button3");
         button4 = GameObject.Find("Button4");
+        continueButton = GameObject.Find("ContinueButton");
 
         button3.SetActive(false);
         button4.SetActive(false);
+        continueButton.SetActive(false);
         button1.GetComponentInChildren<Text>().text = "Red";
         button2.GetComponentInChildren<Text>().text = "Black";
 
@@ -251,7 +252,7 @@ public class Local2PHandlerScr : MonoBehaviour
                 whatSuit(1);
                 break;
             default:
-                sceneChanger.SceneLoad("OnePlayerGame");
+                sceneChanger.SceneLoad("Local2PGame");
                 break;
         }
     }
@@ -298,27 +299,27 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (deck[0][1] == 'D' || deck[0][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Higher or lower?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[0] + " times" + Environment.NewLine + Environment.NewLine + "Higher or lower?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[0] + " times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[0][1] == 'C' || deck[0][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Higher or lower?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[0] + " times." + Environment.NewLine + Environment.NewLine + "Higher or lower?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[0] + " times.";
                 }
             }
-
-            player++;
-            ChangeCardPlacements();
+            button1.SetActive(false);
+            button2.SetActive(false);
+            continueButton.SetActive(true);
         }
         else if (player == 2)
         {
@@ -328,30 +329,29 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (deck[4][1] == 'D' || deck[4][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Higher or lower?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[4] + " times" + Environment.NewLine + Environment.NewLine + "Higher or lower?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[4] + " times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[4][1] == 'C' || deck[4][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Higher or lower?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[4] + " times." + Environment.NewLine + Environment.NewLine + "Higher or lower?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[4] + " times.";
                 }
             }
-
+            button1.SetActive(false);
+            button2.SetActive(false);
             button1.GetComponentInChildren<Text>().text = "Higher";
             button2.GetComponentInChildren<Text>().text = "Lower";
-            round++;
-            player--;
-            ChangeCardPlacements();
+            continueButton.SetActive(true);
         }
     }
 
@@ -365,35 +365,35 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (cardValue[0] < cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else if (cardValue[0] > cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[1] + " times" + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[1] + " times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[1] * 2 + " times" + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[1] * 2 + " times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[0] > cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else if (cardValue[0] < cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[1] + " times." + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[1] + " times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[1] * 2 + " times" + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[1] * 2 + " times.";
                 }
             }
-
-            player++;
-            ChangeCardPlacements();
+            button1.SetActive(false);
+            button2.SetActive(false);
+            continueButton.SetActive(true);
         }
 
         else if (player == 2)
@@ -404,38 +404,37 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (cardValue[4] < cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else if (cardValue[4] > cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[1] + " times" + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[1] + " times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[1] * 2 + " times" + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[1] * 2 + " times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[4] > cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else if (cardValue[4] < cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[5] + " times." + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[5] + " times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[5] * 2 + " times" + Environment.NewLine + Environment.NewLine + "Outside or inside?";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[5] * 2 + " times.";
                 }
             }
-
+            button1.SetActive(false);
+            button2.SetActive(false);
             button1.GetComponentInChildren<Text>().text = "Outside";
             button2.GetComponentInChildren<Text>().text = "Inside";
-            round++;
-            player--;
-            ChangeCardPlacements();
+            continueButton.SetActive(true);
         }
     }
 
@@ -462,34 +461,35 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (cardValue[2] > highCard || cardValue[2] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else if (cardValue[2] == highCard || cardValue[2] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[2] * 2 + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[2] * 2 + " times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[2] + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[2] + " times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[2] < highCard && cardValue[2] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else if (cardValue[2] == highCard || cardValue[2] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[2] * 2 + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[2] * 2 + " times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[2] + " times." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[2] + " times.";
                 }
             }
-            player++;
-            ChangeCardPlacements();
+            button1.SetActive(false);
+            button2.SetActive(false);
+            continueButton.SetActive(true);
         }
         else if (player == 2)
         {
@@ -510,42 +510,39 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (cardValue[6] > highCard || cardValue[6] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else if (cardValue[6] == highCard || cardValue[6] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[6] * 2 + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[6] * 2 + " times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[6] + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[6] + " times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[6] < highCard && cardValue[6] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else if (cardValue[6] == highCard || cardValue[6] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[6] * 2 + " times" + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[6] * 2 + " times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[6] + " times." + Environment.NewLine + Environment.NewLine + "Hearts, Diamonds, Clubs, or Spades?";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[6] + " times.";
                 }
             }
-
-            button3.SetActive(true);
-            button4.SetActive(true);
+            button1.SetActive(false);
+            button2.SetActive(false);
             button1.GetComponentInChildren<Text>().text = "Hearts";
             button2.GetComponentInChildren<Text>().text = "Diamonds";
             button3.GetComponentInChildren<Text>().text = "Clubs";
             button4.GetComponentInChildren<Text>().text = "Spades";
-            round++;
-            player--;
-            ChangeCardPlacements();
+            continueButton.SetActive(true);
         }
     }
 
@@ -559,48 +556,51 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (deck[3][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times" + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[3][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times.";
                 }
             }
             else if (buttonNum == 3)
             {
                 if (deck[3][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times.";
                 }
             }
             else if (buttonNum == 4)
             {
                 if (deck[3][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times.";
                 }
             }
-            player++;
-            ChangeCardPlacements();
+            button1.SetActive(false);
+            button2.SetActive(false);
+            button3.SetActive(false);
+            button4.SetActive(false);
+            continueButton.SetActive(true);
         }
         else if (player == 2)
         {
@@ -610,70 +610,121 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (deck[7][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times" + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[7][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times.";
                 }
             }
             else if (buttonNum == 3)
             {
                 if (deck[7][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times.";
                 }
             }
             else if (buttonNum == 4)
             {
                 if (deck[7][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times." + Environment.NewLine + Environment.NewLine + "You are done with the game.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times.";
                 }
             }
+            button1.SetActive(false);
+            button2.SetActive(false);
             button3.SetActive(false);
             button4.SetActive(false);
-            button1.GetComponentInChildren<Text>().text = "Again";
+            button1.GetComponentInChildren<Text>().text = "Yes";
             button2.GetComponentInChildren<Text>().text = "Exit";
-            round++;
-            player--;
-            ChangeCardPlacements();
+            continueButton.SetActive(true);
         }
     }
 
     public void ChangeCardPlacements()
     {
-        cardPlaceHolder.transform.position = new Vector3(GameObject.Find(deck[0]).transform.position.x, GameObject.Find(deck[0]).transform.position.y, GameObject.Find(deck[0]).transform.position.z);//GameObject.Find(deck[0]).transform.position;
-        GameObject.Find(deck[0]).transform.postition = new Vector3(GameObject.Find(deck[4]).transform.position.x, GameObject.Find(deck[4]).transform.position.y, GameObject.Find(deck[4]).transform.position.z);//GameObject.Find(deck[4]).transform.position;
-        GameObject.Find(deck[4]).transform.position = new Vector3(cardPlaceHolder.transform.position.x, cardPlaceHolder.transform.position.y, cardPlaceHolder.transform.position.z);
-        cardPlaceHolder.transform.position = new Vector3(GameObject.Find(deck[1]).transform.position.x, GameObject.Find(deck[1]).transform.position.y, GameObject.Find(deck[1]).transform.position.z);//GameObject.Find(deck[0]).transform.position;
-        GameObject.Find(deck[1]).transform.postition = new Vector3(GameObject.Find(deck[5]).transform.position.x, GameObject.Find(deck[5]).transform.position.y, GameObject.Find(deck[5]).transform.position.z);//GameObject.Find(deck[4]).transform.position;
-        GameObject.Find(deck[5]).transform.position = new Vector3(cardPlaceHolder.transform.position.x, cardPlaceHolder.transform.position.y, cardPlaceHolder.transform.position.z);
-        cardPlaceHolder.transform.position = new Vector3(GameObject.Find(deck[2]).transform.position.x, GameObject.Find(deck[2]).transform.position.y, GameObject.Find(deck[2]).transform.position.z);//GameObject.Find(deck[0]).transform.position;
-        GameObject.Find(deck[2]).transform.postition = new Vector3(GameObject.Find(deck[5]).transform.position.x, GameObject.Find(deck[6]).transform.position.y, GameObject.Find(deck[6]).transform.position.z);//GameObject.Find(deck[4]).transform.position;
-        GameObject.Find(deck[6]).transform.position = new Vector3(cardPlaceHolder.transform.position.x, cardPlaceHolder.transform.position.y, cardPlaceHolder.transform.position.z);
-        cardPlaceHolder.transform.position = new Vector3(GameObject.Find(deck[3]).transform.position.x, GameObject.Find(deck[3]).transform.position.y, GameObject.Find(deck[3]).transform.position.z);//GameObject.Find(deck[0]).transform.position;
-        GameObject.Find(deck[3]).transform.postition = new Vector3(GameObject.Find(deck[7]).transform.position.x, GameObject.Find(deck[7]).transform.position.y, GameObject.Find(deck[7]).transform.position.z);//GameObject.Find(deck[4]).transform.position;
-        GameObject.Find(deck[7]).transform.position = new Vector3(cardPlaceHolder.transform.position.x, cardPlaceHolder.transform.position.y, cardPlaceHolder.transform.position.z);
+
+        Vector3 tempCardPosition = GameObject.Find(deck[0]).GetComponent<TransformCardPosition>().cardPos;
+        GameObject.Find(deck[0]).transform.position = new Vector3(GameObject.Find(deck[4]).GetComponent<TransformCardPosition>().cardPos.x, GameObject.Find(deck[4]).GetComponent<TransformCardPosition>().cardPos.y, GameObject.Find(deck[4]).GetComponent<TransformCardPosition>().cardPos.z);
+        GameObject.Find(deck[0]).GetComponent<TransformCardPosition>().cardPos = GameObject.Find(deck[4]).GetComponent<TransformCardPosition>().cardPos;
+        GameObject.Find(deck[4]).transform.position = new Vector3(tempCardPosition.x,tempCardPosition.y,tempCardPosition.z);
+        GameObject.Find(deck[4]).GetComponent<TransformCardPosition>().cardPos = tempCardPosition;
+        tempCardPosition = GameObject.Find(deck[1]).GetComponent<TransformCardPosition>().cardPos;
+        GameObject.Find(deck[1]).transform.position = new Vector3(GameObject.Find(deck[5]).GetComponent<TransformCardPosition>().cardPos.x, GameObject.Find(deck[5]).GetComponent<TransformCardPosition>().cardPos.y, GameObject.Find(deck[5]).GetComponent<TransformCardPosition>().cardPos.z);
+        GameObject.Find(deck[1]).GetComponent<TransformCardPosition>().cardPos = GameObject.Find(deck[5]).GetComponent<TransformCardPosition>().cardPos;
+        GameObject.Find(deck[5]).transform.position = new Vector3(tempCardPosition.x, tempCardPosition.y, tempCardPosition.z);
+        GameObject.Find(deck[5]).GetComponent<TransformCardPosition>().cardPos = tempCardPosition;
+        tempCardPosition = GameObject.Find(deck[2]).GetComponent<TransformCardPosition>().cardPos;
+        GameObject.Find(deck[2]).transform.position = new Vector3(GameObject.Find(deck[6]).GetComponent<TransformCardPosition>().cardPos.x, GameObject.Find(deck[6]).GetComponent<TransformCardPosition>().cardPos.y, GameObject.Find(deck[6]).GetComponent<TransformCardPosition>().cardPos.z);
+        GameObject.Find(deck[2]).GetComponent<TransformCardPosition>().cardPos = GameObject.Find(deck[6]).GetComponent<TransformCardPosition>().cardPos;
+        GameObject.Find(deck[6]).transform.position = new Vector3(tempCardPosition.x, tempCardPosition.y, tempCardPosition.z);
+        GameObject.Find(deck[6]).GetComponent<TransformCardPosition>().cardPos = tempCardPosition;
+        tempCardPosition = GameObject.Find(deck[3]).GetComponent<TransformCardPosition>().cardPos;
+        GameObject.Find(deck[3]).transform.position = new Vector3(GameObject.Find(deck[7]).GetComponent<TransformCardPosition>().cardPos.x, GameObject.Find(deck[7]).GetComponent<TransformCardPosition>().cardPos.y, GameObject.Find(deck[7]).GetComponent<TransformCardPosition>().cardPos.z);
+        GameObject.Find(deck[3]).GetComponent<TransformCardPosition>().cardPos = GameObject.Find(deck[7]).GetComponent<TransformCardPosition>().cardPos;
+        GameObject.Find(deck[7]).transform.position = new Vector3(tempCardPosition.x, tempCardPosition.y, tempCardPosition.z);
+        GameObject.Find(deck[7]).GetComponent<TransformCardPosition>().cardPos = tempCardPosition;
+    }
+
+    public void OnContinueButton()
+    {
+        if (player == 2)
+        {
+            round++;
+            player--;
+        }
+        else if (player == 1)
+        {
+            player++;
+        }
+        button1.SetActive(true);
+        button2.SetActive(true);
+        if (round == 4)
+        {
+            button3.SetActive(true);
+            button4.SetActive(true);
+        }
+        ChangeCardPlacements();
+        continueButton.SetActive(false);
+        if (round == 1)
+        {
+            dialogueText.GetComponent<Text>().text = "Red or black?";
+        }
+        else if (round == 2)
+        {
+            dialogueText.GetComponent<Text>().text = "Higher or lower?";
+        }
+        else if (round == 3)
+        {
+            dialogueText.GetComponent<Text>().text = "Outside or inside?";
+        }
+        else if (round == 4)
+        {
+            dialogueText.GetComponent<Text>().text = "What suit?";
+        }
+        else if (round == 5)
+        {
+            dialogueText.GetComponent<Text>().text = "Play again?";
+        }
     }
 
     public void OnInGameSettingsButton()
