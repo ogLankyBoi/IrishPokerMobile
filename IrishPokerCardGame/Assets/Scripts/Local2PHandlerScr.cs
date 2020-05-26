@@ -252,7 +252,7 @@ public class Local2PHandlerScr : MonoBehaviour
                 whatSuit(1);
                 break;
             default:
-                sceneChanger.SceneLoad("Local2PGame");
+                StartCoroutine(decideWhoRidesBus());
                 break;
         }
     }
@@ -655,10 +655,82 @@ public class Local2PHandlerScr : MonoBehaviour
             button3.SetActive(false);
             button4.SetActive(false);
             button1.GetComponentInChildren<Text>().text = "Yes";
-            button2.GetComponentInChildren<Text>().text = "Exit";
+            button2.GetComponentInChildren<Text>().text = "Exit Game";
             continueButton.SetActive(true);
         }
     }
+
+    IEnumerator decideWhoRidesBus()
+    {
+        dialogueBox.SetActive(false);
+        List<string> player1Cards = new List<string>();
+        List<string> player2Cards = new List<string>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            player1Cards.Add(deck[i]);
+        }
+        for (int i = 4; i < 8; i++)
+        {
+            player2Cards.Add(deck[i]);
+        }
+
+        for (int i = 8; i < 52; i++)
+        {
+            GameObject middleCard = Instantiate(cardPrefab, new Vector3(540, 960, 0), Quaternion.identity);
+            middleCard.name = deck[i];
+            middleCard.GetComponent<Seeable>().faceUp = true;
+            yield return new WaitForSeconds(0.8f);
+            for (int j = 0; j < 8; j++)
+            {
+                if (deck[i][0] == deck[j][0] && GameObject.Find(deck[j]) != null)
+                {
+                    Destroy(GameObject.Find(deck[j]));
+                    if (j <= 3)
+                    {
+                        player1Cards.Remove(deck[j]);
+                    }
+                    else if (j >= 4)
+                    {
+                        player2Cards.Remove(deck[j]);
+                    }
+                }
+            }
+            if (player1Cards.Count == 0 && player2Cards.Count == 0)
+            {
+                Destroy(GameObject.Find(deck[i]));
+                for (int j = 0; j < 8; j++)
+                {
+                    Destroy(GameObject.Find(deck[j]));
+                }
+                print("both players win");
+                break;
+            }
+            else if (player1Cards.Count == 0)
+            {
+                Destroy(GameObject.Find(deck[i]));
+                for (int j = 0; j < 8; j++)
+                {
+                    Destroy(GameObject.Find(deck[j]));
+                }
+                print("player 2 loses");
+                break;
+            }
+            else if (player2Cards.Count == 0)
+            {
+                Destroy(GameObject.Find(deck[i]));
+                for (int j = 0; j < 8; j++)
+                {
+                    Destroy(GameObject.Find(deck[j]));
+                }
+                print("player 1 loses");
+                break;
+            }
+            Destroy(GameObject.Find(deck[i]));
+            yield return new WaitForSeconds(0.8f);
+        }
+    }
+
 
     public void ChangeCardPlacements()
     {
@@ -723,7 +795,7 @@ public class Local2PHandlerScr : MonoBehaviour
         }
         else if (round == 5)
         {
-            dialogueText.GetComponent<Text>().text = "Play again?";
+            dialogueText.GetComponent<Text>().text = "Ready to decide who is riding the bus?";
         }
     }
 
