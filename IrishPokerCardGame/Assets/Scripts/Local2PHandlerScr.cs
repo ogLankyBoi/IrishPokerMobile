@@ -25,6 +25,7 @@ public class Local2PHandlerScr : MonoBehaviour
     public int round = 1;
     public int player = 1;
     public int busRound = 1;
+    public int busDeckPlaceholder = 11;
 
     public GameObject button1;
     public GameObject button2;
@@ -37,6 +38,8 @@ public class Local2PHandlerScr : MonoBehaviour
     public GameObject dialogueText;
     public GameObject dialogueBox;
     public GameObject inGameOptions;
+    public GameObject rideBusBox;
+    public GameObject rideBusText;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +60,9 @@ public class Local2PHandlerScr : MonoBehaviour
         dialogueBox = GameObject.Find("DialogBox");
         inGameOptions = GameObject.Find("InGameOptions");
         inGameOptions.SetActive(false);
+        rideBusText = GameObject.Find("RideBusText");
+        rideBusBox = GameObject.Find("RideBusBox");
+        rideBusBox.SetActive(false);
     }
 
     public static List<string> GenerateDeck()
@@ -261,8 +267,11 @@ public class Local2PHandlerScr : MonoBehaviour
             case 4:
                 whatSuit(1);
                 break;
-            default:
+            case 5:
                 StartCoroutine(decideWhoRidesBus());
+                break;
+            default:
+                sceneChanger.SceneLoad("Local2PGame");
                 break;
         }
     }
@@ -805,6 +814,7 @@ public class Local2PHandlerScr : MonoBehaviour
 
         higherButton.SetActive(true);
         lowerButton.SetActive(true);
+        rideBusBox.SetActive(true);
     }
 
     void SetUpBus()
@@ -841,22 +851,70 @@ public class Local2PHandlerScr : MonoBehaviour
         }
     }
 
+    public void ResetBus()
+    {
+        for (int i = 0; i < busRound; i++)
+        {
+            Destroy(GameObject.Find(currentBusCards[i]));
+        }
+        GameObject.Find(currentBusCards[busRound]).transform.position = new Vector3(200, 1550, 0);
+
+        busDeckPlaceholder = busDeckPlaceholder + busRound;
+        busRound = 1;
+    }
+
     public void OnHigherButton()
     {
         GameObject.Find(currentBusCards[busRound]).GetComponent<Seeable>().faceUp = true;
         if (currentBusValues[busRound] > currentBusValues[busRound - 1])
         {
             busRound++;
+            rideBusText.GetComponent<Text>().text = "Correct!";
+            if (busRound == 11)
+            {
+                StartCoroutine(WonTheBus());
+            }
         }
         else if (currentBusValues[busRound] < currentBusValues[busRound - 1])
         {
-            //wrong
+            if (busRound <= 4)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 1 times.";
+            }
+            else if (busRound <= 7)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 2 times.";
+            }
+            else if (busRound <= 9)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 3 times.";
+            }
+            else if (busRound <= 10)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 4 times.";
+            }
+            ResetBus();
         }
         else
         {
-            //wrong * 2
+            if (busRound <= 4)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 2 times.";
+            }
+            else if (busRound <= 7)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 4 times.";
+            }
+            else if (busRound <= 9)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 6 times.";
+            }
+            else if (busRound <= 10)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 8 times.";
+            }
+            ResetBus();
         }
-
     }
 
     public void OnLowerButton()
@@ -865,15 +923,71 @@ public class Local2PHandlerScr : MonoBehaviour
         if (currentBusValues[busRound] < currentBusValues[busRound - 1])
         {
             busRound++;
+            rideBusText.GetComponent<Text>().text = "Correct!";
+            if (busRound == 11)
+            {
+                StartCoroutine(WonTheBus());
+            }
         }
         else if (currentBusValues[busRound] > currentBusValues[busRound - 1])
         {
-            //wrong
+            if (busRound <= 4)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 1 times.";
+            }
+            else if (busRound <= 7)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 2 times.";
+            }
+            else if (busRound <= 9)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 3 times.";
+            }
+            else if (busRound <= 10)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 4 times.";
+            }
+            ResetBus();
         }
         else
         {
-            //wrong * 2
+            if (busRound <= 4)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 2 times.";
+            }
+            else if (busRound <= 7)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 4 times.";
+            }
+            else if (busRound <= 9)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 6 times.";
+            }
+            else if (busRound <= 10)
+            {
+                rideBusText.GetComponent<Text>().text = "Wrong. Drink 8 times.";
+            }
+            ResetBus();
         }
+    }
+
+    IEnumerator WonTheBus()
+    {
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < 11; i++)
+        {
+            Destroy(GameObject.Find(currentBusCards[i]));
+        }
+        higherButton.SetActive(false);
+        lowerButton.SetActive(false);
+        rideBusBox.SetActive(false);
+        dialogueText.GetComponent<Text>().text = "You beat the bus! Play again?";
+        dialogueBox.SetActive(true);
+        continueButton.SetActive(false);
+        round++;
+        button1.SetActive(true);
+        button2.SetActive(true);
+
     }
 
     public void ChangeCardPlacements()
