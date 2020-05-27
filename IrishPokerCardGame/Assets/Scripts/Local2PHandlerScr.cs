@@ -13,20 +13,26 @@ public class Local2PHandlerScr : MonoBehaviour
 
     public static string[] suits = new string[] { "C", "D", "H", "S" };
     public static string[] values = new string[] { "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A" };
+    public string[] currentBusCards;
+    public int[] currentBusValues = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     public List<string> deck;
     public List<string> restOfDeck;
+    public List<string> busDeck;
     public List<int> cardValue;
     public List<int> cardDrinks;
 
     public int round = 1;
     public int player = 1;
+    public int busRound = 1;
 
     public GameObject button1;
     public GameObject button2;
     public GameObject button3;
     public GameObject button4;
     public GameObject continueButton;
+    public GameObject higherButton;
+    public GameObject lowerButton;
 
     public GameObject dialogueText;
     public GameObject dialogueBox;
@@ -226,10 +232,14 @@ public class Local2PHandlerScr : MonoBehaviour
         button3 = GameObject.Find("Button3");
         button4 = GameObject.Find("Button4");
         continueButton = GameObject.Find("ContinueButton");
+        higherButton = GameObject.Find("HigherButton");
+        lowerButton = GameObject.Find("LowerButton");
 
         button3.SetActive(false);
         button4.SetActive(false);
         continueButton.SetActive(false);
+        higherButton.SetActive(false);
+        lowerButton.SetActive(false);
         button1.GetComponentInChildren<Text>().text = "Red";
         button2.GetComponentInChildren<Text>().text = "Black";
 
@@ -665,6 +675,7 @@ public class Local2PHandlerScr : MonoBehaviour
         dialogueBox.SetActive(false);
         List<string> player1Cards = new List<string>();
         List<string> player2Cards = new List<string>();
+        round++;
 
         for (int i = 0; i < 4; i++)
         {
@@ -713,7 +724,11 @@ public class Local2PHandlerScr : MonoBehaviour
                 {
                     Destroy(GameObject.Find(deck[j]));
                 }
-                print("player 2 loses");
+                dialogueText.GetComponent<Text>().text = "Player 2 is riding the bus, are you ready?";
+                continueButton.SetActive(true);
+                button1.SetActive(false);
+                button2.SetActive(false);
+                dialogueBox.SetActive(true);
                 break;
             }
             else if (player2Cards.Count == 0)
@@ -723,14 +738,143 @@ public class Local2PHandlerScr : MonoBehaviour
                 {
                     Destroy(GameObject.Find(deck[j]));
                 }
-                print("player 1 loses");
+                dialogueText.GetComponent<Text>().text = "Player 1 is riding the bus, are you ready?";
+                continueButton.SetActive(true);
+                button1.SetActive(false);
+                button2.SetActive(false);
+                dialogueBox.SetActive(true);
                 break;
             }
             Destroy(GameObject.Find(deck[i]));
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
+    public void RideTheBus()
+    {
+        busDeck = GenerateDeck();
+        ShuffleDeck(busDeck);
+        SetUpBus();
+        currentBusCards = new string[] { busDeck[0], busDeck[1], busDeck[2], busDeck[3], busDeck[4], busDeck[5], busDeck[6], busDeck[7], busDeck[8], busDeck[9], busDeck[10]};
+        
+        for (int i = 0; i < 11; i++)
+        {
+            switch (currentBusCards[i][0])
+            {
+                case '2':
+                    currentBusValues[i] = 2;
+                    break;
+                case '3':
+                    currentBusValues[i] = 3;
+                    break;
+                case '4':
+                    currentBusValues[i] = 4;
+                    break;
+                case '5':
+                    currentBusValues[i] = 5;
+                    break;
+                case '6':
+                    currentBusValues[i] = 6;
+                    break;
+                case '7':
+                    currentBusValues[i] = 7;
+                    break;
+                case '8':
+                    currentBusValues[i] = 8;
+                    break;
+                case '9':
+                    currentBusValues[i] = 9;
+                    break;
+                case 'T':
+                    currentBusValues[i] = 10;
+                    break;
+                case 'J':
+                    currentBusValues[i] = 11;
+                    break;
+                case 'Q':
+                    currentBusValues[i] = 12;
+                    break;
+                case 'K':
+                    currentBusValues[i] = 13;
+                    break;
+                default:
+                    currentBusValues[i] = 14;
+                    break;
+            }
+        }
+
+        higherButton.SetActive(true);
+        lowerButton.SetActive(true);
+    }
+
+    void SetUpBus()
+    {
+
+        for (int i = 0; i < 11; i++)
+        {
+            if (i == 0)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(200, 1550, 0), Quaternion.identity);
+                busCard.name = busDeck[i];
+                busCard.GetComponent<Seeable>().faceUp = true;
+            }
+            else if (i <= 4)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(180 + (i-1)*240, 500, 0), Quaternion.identity);
+                busCard.name = busDeck[i];
+            }
+            else if (i <= 7)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(300 + (i-5)*240, 850, 0), Quaternion.identity);
+                busCard.name = busDeck[i];
+            }
+            else if (i <= 9)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(420 + (i-8)*240, 1200, 0), Quaternion.identity);
+                busCard.name = busDeck[i];
+            }
+            else if (i <= 10)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(540, 1550, 0), Quaternion.identity);
+                busCard.name = busDeck[i];
+            }
+        }
+    }
+
+    public void OnHigherButton()
+    {
+        GameObject.Find(currentBusCards[busRound]).GetComponent<Seeable>().faceUp = true;
+        if (currentBusValues[busRound] > currentBusValues[busRound - 1])
+        {
+            busRound++;
+        }
+        else if (currentBusValues[busRound] < currentBusValues[busRound - 1])
+        {
+            //wrong
+        }
+        else
+        {
+            //wrong * 2
+        }
+
+    }
+
+    public void OnLowerButton()
+    {
+        GameObject.Find(currentBusCards[busRound]).GetComponent<Seeable>().faceUp = true;
+        if (currentBusValues[busRound] < currentBusValues[busRound - 1])
+        {
+            busRound++;
+        }
+        else if (currentBusValues[busRound] > currentBusValues[busRound - 1])
+        {
+            //wrong
+        }
+        else
+        {
+            //wrong * 2
+        }
+    }
 
     public void ChangeCardPlacements()
     {
@@ -759,43 +903,52 @@ public class Local2PHandlerScr : MonoBehaviour
 
     public void OnContinueButton()
     {
-        if (player == 2)
+        if (round <= 5)
         {
-            round++;
-            player--;
+            if (player == 2)
+            {
+                round++;
+                player--;
+            }
+            else if (player == 1)
+            {
+                player++;
+            }
+            button1.SetActive(true);
+            button2.SetActive(true);
+            if (round == 4)
+            {
+                button3.SetActive(true);
+                button4.SetActive(true);
+            }
+            ChangeCardPlacements();
+            continueButton.SetActive(false);
+            if (round == 1)
+            {
+                dialogueText.GetComponent<Text>().text = "Red or black?";
+            }
+            else if (round == 2)
+            {
+                dialogueText.GetComponent<Text>().text = "Higher or lower?";
+            }
+            else if (round == 3)
+            {
+                dialogueText.GetComponent<Text>().text = "Outside or inside?";
+            }
+            else if (round == 4)
+            {
+                dialogueText.GetComponent<Text>().text = "What suit?";
+            }
+            else if (round == 5)
+            {
+                dialogueText.GetComponent<Text>().text = "Ready to decide who is riding the bus?";
+            }
         }
-        else if (player == 1)
+        
+        if (round == 6)
         {
-            player++;
-        }
-        button1.SetActive(true);
-        button2.SetActive(true);
-        if (round == 4)
-        {
-            button3.SetActive(true);
-            button4.SetActive(true);
-        }
-        ChangeCardPlacements();
-        continueButton.SetActive(false);
-        if (round == 1)
-        {
-            dialogueText.GetComponent<Text>().text = "Red or black?";
-        }
-        else if (round == 2)
-        {
-            dialogueText.GetComponent<Text>().text = "Higher or lower?";
-        }
-        else if (round == 3)
-        {
-            dialogueText.GetComponent<Text>().text = "Outside or inside?";
-        }
-        else if (round == 4)
-        {
-            dialogueText.GetComponent<Text>().text = "What suit?";
-        }
-        else if (round == 5)
-        {
-            dialogueText.GetComponent<Text>().text = "Ready to decide who is riding the bus?";
+            dialogueBox.SetActive(false);
+            RideTheBus();
         }
     }
 
