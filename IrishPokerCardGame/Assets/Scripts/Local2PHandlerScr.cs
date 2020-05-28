@@ -853,46 +853,96 @@ public class Local2PHandlerScr : MonoBehaviour
 
     public void ResetBus()
     {
-        for (int i = 0; i < busRound; i++)
+        if (busRound + busDeckPlaceholder <= 51)
         {
-            Destroy(GameObject.Find(currentBusCards[i]));
+            for (int i = 0; i < busRound; i++)
+            {
+                Destroy(GameObject.Find(currentBusCards[i]));
+            }
+            GameObject.Find(currentBusCards[busRound]).transform.position = new Vector3(200, 1550, 0);
+            currentBusCards[0] = currentBusCards[busRound];
+            for (int i = 1; i <= busRound; i++)
+            {
+                if (i == 0)
+                {
+                    GameObject busCard = Instantiate(cardPrefab, new Vector3(200, 1550, 0), Quaternion.identity);
+                    busCard.name = busDeck[busDeckPlaceholder + i];
+                    busCard.GetComponent<Seeable>().faceUp = true;
+                }
+                else if (i <= 4)
+                {
+                    GameObject busCard = Instantiate(cardPrefab, new Vector3(180 + (i - 1) * 240, 500, 0), Quaternion.identity);
+                    busCard.name = busDeck[busDeckPlaceholder + i];
+                }
+                else if (i <= 7)
+                {
+                    GameObject busCard = Instantiate(cardPrefab, new Vector3(300 + (i - 5) * 240, 850, 0), Quaternion.identity);
+                    busCard.name = busDeck[busDeckPlaceholder + i];
+                }
+                else if (i <= 9)
+                {
+                    GameObject busCard = Instantiate(cardPrefab, new Vector3(420 + (i - 8) * 240, 1200, 0), Quaternion.identity);
+                    busCard.name = busDeck[busDeckPlaceholder + i];
+                }
+                else if (i <= 10)
+                {
+                    GameObject busCard = Instantiate(cardPrefab, new Vector3(540, 1550, 0), Quaternion.identity);
+                    busCard.name = busDeck[busDeckPlaceholder + i];
+                }
+                currentBusCards[i] = busDeck[busDeckPlaceholder + i];
+            }
+            busDeckPlaceholder = busDeckPlaceholder + busRound;
+            busRound = 1;
+            for (int i = 0; i < 11; i++)
+            {
+                switch (currentBusCards[i][0])
+                {
+                    case '2':
+                        currentBusValues[i] = 2;
+                        break;
+                    case '3':
+                        currentBusValues[i] = 3;
+                        break;
+                    case '4':
+                        currentBusValues[i] = 4;
+                        break;
+                    case '5':
+                        currentBusValues[i] = 5;
+                        break;
+                    case '6':
+                        currentBusValues[i] = 6;
+                        break;
+                    case '7':
+                        currentBusValues[i] = 7;
+                        break;
+                    case '8':
+                        currentBusValues[i] = 8;
+                        break;
+                    case '9':
+                        currentBusValues[i] = 9;
+                        break;
+                    case 'T':
+                        currentBusValues[i] = 10;
+                        break;
+                    case 'J':
+                        currentBusValues[i] = 11;
+                        break;
+                    case 'Q':
+                        currentBusValues[i] = 12;
+                        break;
+                    case 'K':
+                        currentBusValues[i] = 13;
+                        break;
+                    default:
+                        currentBusValues[i] = 14;
+                        break;
+                }
+            }
         }
-        GameObject.Find(currentBusCards[busRound]).transform.position = new Vector3(200, 1550, 0);
-        currentBusCards[0] = currentBusCards[busRound];
-        for (int i = 1; i <= busRound; i++)
+        else
         {
-            if (i == 0)
-            {
-                GameObject busCard = Instantiate(cardPrefab, new Vector3(200, 1550, 0), Quaternion.identity);
-                busCard.name = busDeck[busDeckPlaceholder + i];
-                busCard.GetComponent<Seeable>().faceUp = true;
-            }
-            else if (i <= 4)
-            {
-                GameObject busCard = Instantiate(cardPrefab, new Vector3(180 + (i - 1) * 240, 500, 0), Quaternion.identity);
-                busCard.name = busDeck[busDeckPlaceholder + i];
-            }
-            else if (i <= 7)
-            {
-                GameObject busCard = Instantiate(cardPrefab, new Vector3(300 + (i - 5) * 240, 850, 0), Quaternion.identity);
-                busCard.name = busDeck[busDeckPlaceholder + i];
-            }
-            else if (i <= 9)
-            {
-                GameObject busCard = Instantiate(cardPrefab, new Vector3(420 + (i - 8) * 240, 1200, 0), Quaternion.identity);
-                busCard.name = busDeck[busDeckPlaceholder + i];
-            }
-            else if (i <= 10)
-            {
-                GameObject busCard = Instantiate(cardPrefab, new Vector3(540, 1550, 0), Quaternion.identity);
-                busCard.name = busDeck[busDeckPlaceholder + i];
-            }
-            currentBusCards[i] = busDeck[busDeckPlaceholder + i];
-            print(currentBusCards[i]);
+            StartCoroutine(LostTheBus());
         }
-        busDeckPlaceholder = busDeckPlaceholder + busRound;
-        busRound = 1;
-        
     }
 
     public void OnHigherButton()
@@ -1014,6 +1064,25 @@ public class Local2PHandlerScr : MonoBehaviour
         lowerButton.SetActive(false);
         rideBusBox.SetActive(false);
         dialogueText.GetComponent<Text>().text = "You beat the bus! Play again?";
+        dialogueBox.SetActive(true);
+        continueButton.SetActive(false);
+        round++;
+        button1.SetActive(true);
+        button2.SetActive(true);
+
+    }
+
+    IEnumerator LostTheBus()
+    {
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < 11; i++)
+        {
+            Destroy(GameObject.Find(currentBusCards[i]));
+        }
+        higherButton.SetActive(false);
+        lowerButton.SetActive(false);
+        rideBusBox.SetActive(false);
+        dialogueText.GetComponent<Text>().text = "You lost the bus! You are terrible! Play again?";
         dialogueBox.SetActive(true);
         continueButton.SetActive(false);
         round++;
