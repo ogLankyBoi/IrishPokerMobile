@@ -25,7 +25,7 @@ public class Local2PHandlerScr : MonoBehaviour
     public int round = 1;
     public int player = 1;
     public int busRound = 1;
-    public int busDeckPlaceholder = 11;
+    public int busDeckPlaceholder = 10;
 
     public GameObject button1;
     public GameObject button2;
@@ -858,9 +858,41 @@ public class Local2PHandlerScr : MonoBehaviour
             Destroy(GameObject.Find(currentBusCards[i]));
         }
         GameObject.Find(currentBusCards[busRound]).transform.position = new Vector3(200, 1550, 0);
-
+        currentBusCards[0] = currentBusCards[busRound];
+        for (int i = 1; i <= busRound; i++)
+        {
+            if (i == 0)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(200, 1550, 0), Quaternion.identity);
+                busCard.name = busDeck[busDeckPlaceholder + i];
+                busCard.GetComponent<Seeable>().faceUp = true;
+            }
+            else if (i <= 4)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(180 + (i - 1) * 240, 500, 0), Quaternion.identity);
+                busCard.name = busDeck[busDeckPlaceholder + i];
+            }
+            else if (i <= 7)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(300 + (i - 5) * 240, 850, 0), Quaternion.identity);
+                busCard.name = busDeck[busDeckPlaceholder + i];
+            }
+            else if (i <= 9)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(420 + (i - 8) * 240, 1200, 0), Quaternion.identity);
+                busCard.name = busDeck[busDeckPlaceholder + i];
+            }
+            else if (i <= 10)
+            {
+                GameObject busCard = Instantiate(cardPrefab, new Vector3(540, 1550, 0), Quaternion.identity);
+                busCard.name = busDeck[busDeckPlaceholder + i];
+            }
+            currentBusCards[i] = busDeck[busDeckPlaceholder + i];
+            print(currentBusCards[i]);
+        }
         busDeckPlaceholder = busDeckPlaceholder + busRound;
         busRound = 1;
+        
     }
 
     public void OnHigherButton()
