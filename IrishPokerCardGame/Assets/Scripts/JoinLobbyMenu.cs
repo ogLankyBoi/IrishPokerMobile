@@ -25,7 +25,7 @@ public class JoinLobbyMenu : MonoBehaviour
         NetworkManagerIrishPoker.OnClientDisconnected += HandleClientDisconnected;
     }
 
-    // Used to enable the Join Button if there is text in the textboxes
+    // Used to enable the Join Button if there is text in both ip and name textboxes
     public void SetIpAddress()
     {
         joinButton.interactable = !string.IsNullOrEmpty(ipAddressInputField.text) && !string.IsNullOrEmpty(nameInputField.text);
