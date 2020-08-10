@@ -20,7 +20,6 @@ public class Local2PHandlerScr : MonoBehaviour
     public List<string> restOfDeck;
     public List<string> busDeck;
     public List<int> cardValue;
-    public List<int> cardDrinks;
 
     public int round = 1;
     public int player = 1;
@@ -40,6 +39,7 @@ public class Local2PHandlerScr : MonoBehaviour
     public GameObject inGameOptions;
     public GameObject rideBusBox;
     public GameObject rideBusText;
+    public GameObject busTieBox;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +49,6 @@ public class Local2PHandlerScr : MonoBehaviour
         deck = GenerateDeck();
         ShuffleDeck(deck);
         cardValue = AssignCardValues(deck);
-        cardDrinks = AssignCardDrinks(deck);
         Deal();
     }
 
@@ -63,6 +62,8 @@ public class Local2PHandlerScr : MonoBehaviour
         rideBusText = GameObject.Find("RideBusText");
         rideBusBox = GameObject.Find("RideBusBox");
         rideBusBox.SetActive(false);
+        busTieBox = GameObject.Find("BusTieBox");
+        busTieBox.SetActive(false);
     }
 
     public static List<string> GenerateDeck()
@@ -148,60 +149,6 @@ public class Local2PHandlerScr : MonoBehaviour
         return cardValues;
     }
 
-    public static List<int> AssignCardDrinks(List<string> thisDeck)
-    {
-        List<int> cardDrink = new List<int>();
-
-        for (int i = 0; i < 52; i++)
-        {
-            string cardName = thisDeck[i];
-            char value = cardName[0];
-            switch (value)
-            {
-                case '2':
-                    cardDrink.Add(2);
-                    break;
-                case '3':
-                    cardDrink.Add(3);
-                    break;
-                case '4':
-                    cardDrink.Add(4); ;
-                    break;
-                case '5':
-                    cardDrink.Add(5);
-                    break;
-                case '6':
-                    cardDrink.Add(6);
-                    break;
-                case '7':
-                    cardDrink.Add(7);
-                    break;
-                case '8':
-                    cardDrink.Add(8);
-                    break;
-                case '9':
-                    cardDrink.Add(9);
-                    break;
-                case 'T':
-                    cardDrink.Add(10);
-                    break;
-                case 'J':
-                    cardDrink.Add(10);
-                    break;
-                case 'Q':
-                    cardDrink.Add(10);
-                    break;
-                case 'K':
-                    cardDrink.Add(10);
-                    break;
-                default:
-                    cardDrink.Add(11);
-                    break;
-            }
-        }
-
-        return cardDrink;
-    }
 
     void Deal()
     {
@@ -318,22 +265,22 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (deck[0][1] == 'D' || deck[0][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks twice.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[0] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[0][1] == 'C' || deck[0][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks twice.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[0] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
                 }
             }
             button1.SetActive(false);
@@ -348,22 +295,22 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (deck[4][1] == 'D' || deck[4][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks twice.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[4] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[4][1] == 'C' || deck[4][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks twice.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[4] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
                 }
             }
             button1.SetActive(false);
@@ -384,30 +331,30 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (cardValue[0] < cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks four times.";
                 }
                 else if (cardValue[0] > cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[1] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[1] * 2 + " times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[0] > cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks four times.";
                 }
                 else if (cardValue[0] < cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[1] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[1] * 2 + " times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
                 }
             }
             button1.SetActive(false);
@@ -423,30 +370,30 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (cardValue[4] < cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks four times.";
                 }
                 else if (cardValue[4] > cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[1] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[1] * 2 + " times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[4] > cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks four times.";
                 }
                 else if (cardValue[4] < cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[5] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[5] * 2 + " times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
                 }
             }
             button1.SetActive(false);
@@ -480,30 +427,30 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (cardValue[2] > highCard || cardValue[2] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks six times.";
                 }
                 else if (cardValue[2] == highCard || cardValue[2] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[2] * 2 + " times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[2] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[2] < highCard && cardValue[2] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks six times.";
                 }
                 else if (cardValue[2] == highCard || cardValue[2] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[2] * 2 + " times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[2] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
                 }
             }
             button1.SetActive(false);
@@ -529,30 +476,30 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (cardValue[6] > highCard || cardValue[6] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks six times.";
                 }
                 else if (cardValue[6] == highCard || cardValue[6] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[6] * 2 + " times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[6] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[6] < highCard && cardValue[6] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks six times.";
                 }
                 else if (cardValue[6] == highCard || cardValue[6] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink " + cardDrinks[6] * 2 + " times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[6] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
                 }
             }
             button1.SetActive(false);
@@ -575,44 +522,44 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (deck[3][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks eight times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[3][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks eight times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
                 }
             }
             else if (buttonNum == 3)
             {
                 if (deck[3][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks eight times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
                 }
             }
             else if (buttonNum == 4)
             {
                 if (deck[3][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 2 drinks eight times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[3] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
                 }
             }
             button1.SetActive(false);
@@ -629,44 +576,44 @@ public class Local2PHandlerScr : MonoBehaviour
             {
                 if (deck[7][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks eight times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[7][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks eight times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
                 }
             }
             else if (buttonNum == 3)
             {
                 if (deck[7][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks eight times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
                 }
             }
             else if (buttonNum == 4)
             {
                 if (deck[7][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! You don't have to drink.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Player 1 drinks eight times.";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink " + cardDrinks[7] + " times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
                 }
             }
             button1.SetActive(false);
@@ -723,7 +670,7 @@ public class Local2PHandlerScr : MonoBehaviour
                 {
                     Destroy(GameObject.Find(deck[j]));
                 }
-                print("both players win");
+                StartCoroutine(BusTie());
                 break;
             }
             else if (player1Cards.Count == 0)
@@ -756,6 +703,54 @@ public class Local2PHandlerScr : MonoBehaviour
             }
             Destroy(GameObject.Find(deck[i]));
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    IEnumerator BusTie()
+    {
+        int playerBus = 0;
+        busTieBox.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        List<string> tieDeck;
+        tieDeck = GenerateDeck();
+        ShuffleDeck(tieDeck);
+        for (int i = 0; i < 52; i++)
+        {
+            if (i % 2 == 0)
+            {
+                GameObject tieCard = Instantiate(cardPrefab, new Vector3(540, 500, 0), Quaternion.identity);
+                tieCard.name = tieDeck[i];
+            }
+            else
+            {
+                GameObject tieCard = Instantiate(cardPrefab, new Vector3(540, 1500, 0), Quaternion.identity);
+                tieCard.name = tieDeck[i];
+            }
+            GameObject.Find(tieDeck[i]).GetComponent<Seeable>().faceUp = true;
+            yield return new WaitForSeconds(0.8f);
+            if (tieDeck[i][0] == 'A')
+            {
+                if (i % 2 == 0)
+                {
+                    dialogueText.GetComponent<Text>().text = "Player 2 is riding the bus, are you ready?";
+                }
+                else
+                {
+                    dialogueText.GetComponent<Text>().text = "Player 1 is riding the bus, are you ready?";
+                }
+                continueButton.SetActive(true);
+                button1.SetActive(false);
+                button2.SetActive(false);
+                Destroy(GameObject.Find(tieDeck[i - 1]));
+                Destroy(GameObject.Find(tieDeck[i]));
+                busTieBox.SetActive(false);
+                dialogueBox.SetActive(true);
+                break;
+            }
+            if (i > 0)
+            {
+                Destroy(GameObject.Find(tieDeck[i - 1]));
+            }
         }
     }
 
