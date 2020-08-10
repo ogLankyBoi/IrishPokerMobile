@@ -2818,6 +2818,7 @@ MonoBehaviour:
   inGameOptions: {fileID: 298059068}
   rideBusBox: {fileID: 0}
   rideBusText: {fileID: 0}
+  busTieBox: {fileID: 0}
 --- !u!4 &1860429119
 Transform:
   m_ObjectHideFlags: 0
