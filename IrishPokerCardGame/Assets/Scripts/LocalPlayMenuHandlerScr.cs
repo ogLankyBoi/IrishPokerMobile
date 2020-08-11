@@ -99,10 +99,10 @@ public class LocalPlayMenuHandlerScr : MonoBehaviour
                 sceneChanger.SceneLoad("Local3PGame");
                 break;
             case 4:
-                //sceneChanger.SceneLoad("Local4PGame");
+                sceneChanger.SceneLoad("Local4PGame");
                 break;
             case 5:
-                //sceneChanger.SceneLoad("Local5PGame");
+                sceneChanger.SceneLoad("Local5PGame");
                 break;
             default:
                 //sceneChanger.SceneLoad("Local6PGame");
