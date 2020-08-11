@@ -40,6 +40,9 @@ public class Local3PHandlerScr : MonoBehaviour
     public GameObject rideBusBox;
     public GameObject rideBusText;
     public GameObject busTieBox;
+    public GameObject playerMarkerRed;
+    public GameObject playerMarkerBlue;
+    public GameObject playerMarkerGreen;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +67,9 @@ public class Local3PHandlerScr : MonoBehaviour
         rideBusBox.SetActive(false);
         busTieBox = GameObject.Find("BusTieBox");
         busTieBox.SetActive(false);
+        playerMarkerRed = GameObject.Find("PlayerColorMarkerRed");
+        playerMarkerBlue = GameObject.Find("PlayerColorMarkerBlue");
+        playerMarkerGreen = GameObject.Find("PlayerColorMarkerGreen");
     }
 
     public static List<string> GenerateDeck()
@@ -281,7 +287,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[0][1] == 'D' || deck[0][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks twice.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
                 }
                 else
                 {
@@ -292,7 +298,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[0][1] == 'C' || deck[0][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks twice.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
                 }
                 else
                 {
@@ -311,7 +317,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[4][1] == 'D' || deck[4][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks twice.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
                 }
                 else
                 {
@@ -322,7 +328,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[4][1] == 'C' || deck[4][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks twice.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
                 }
                 else
                 {
@@ -341,7 +347,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[8][1] == 'D' || deck[8][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks twice.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
                 }
                 else
                 {
@@ -352,7 +358,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[8][1] == 'C' || deck[8][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks twice.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
                 }
                 else
                 {
@@ -377,7 +383,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[0] < cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks four times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
                 }
                 else if (cardValue[0] > cardValue[1])
                 {
@@ -392,7 +398,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[0] > cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks four times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
                 }
                 else if (cardValue[0] < cardValue[1])
                 {
@@ -416,7 +422,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[4] < cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks four times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
                 }
                 else if (cardValue[4] > cardValue[5])
                 {
@@ -431,7 +437,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[4] > cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks four times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
                 }
                 else if (cardValue[4] < cardValue[5])
                 {
@@ -454,7 +460,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[8] < cardValue[9])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks four times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
                 }
                 else if (cardValue[8] > cardValue[9])
                 {
@@ -469,7 +475,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[8] > cardValue[9])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks four times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
                 }
                 else if (cardValue[8] < cardValue[9])
                 {
@@ -511,7 +517,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[2] > highCard || cardValue[2] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks six times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
                 }
                 else if (cardValue[2] == highCard || cardValue[2] == lowCard)
                 {
@@ -526,7 +532,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[2] < highCard && cardValue[2] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks six times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
                 }
                 else if (cardValue[2] == highCard || cardValue[2] == lowCard)
                 {
@@ -560,7 +566,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[6] > highCard || cardValue[6] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks six times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
                 }
                 else if (cardValue[6] == highCard || cardValue[6] == lowCard)
                 {
@@ -575,7 +581,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[6] < highCard && cardValue[6] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks six times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
                 }
                 else if (cardValue[6] == highCard || cardValue[6] == lowCard)
                 {
@@ -609,7 +615,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[10] > highCard || cardValue[10] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks six times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
                 }
                 else if (cardValue[10] == highCard || cardValue[10] == lowCard)
                 {
@@ -624,7 +630,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[10] < highCard && cardValue[10] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks six times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
                 }
                 else if (cardValue[10] == highCard || cardValue[10] == lowCard)
                 {
@@ -655,7 +661,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[3][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -666,7 +672,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[3][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -677,7 +683,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[3][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -688,7 +694,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[3][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Blue drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -709,7 +715,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[7][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -720,7 +726,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[7][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -731,7 +737,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[7][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -742,7 +748,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[7][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -763,7 +769,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[11][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -774,7 +780,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[11][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -785,7 +791,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[11][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -796,7 +802,7 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[11][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Red drinks eight times.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
                 }
                 else
                 {
@@ -881,6 +887,9 @@ public class Local3PHandlerScr : MonoBehaviour
                 button1.SetActive(false);
                 button2.SetActive(false);
                 dialogueBox.SetActive(true);
+                playerMarkerRed.SetActive(false);
+                playerMarkerBlue.SetActive(false);
+                playerMarkerGreen.SetActive(false);
                 break;
             }
             else if (player1Cards.Count == 0 && player3Cards.Count == 0)
@@ -895,6 +904,9 @@ public class Local3PHandlerScr : MonoBehaviour
                 button1.SetActive(false);
                 button2.SetActive(false);
                 dialogueBox.SetActive(true);
+                playerMarkerRed.SetActive(false);
+                playerMarkerBlue.SetActive(false);
+                playerMarkerGreen.SetActive(false);
                 break;
             }
             else if (player2Cards.Count == 0 && player3Cards.Count == 0)
@@ -909,6 +921,9 @@ public class Local3PHandlerScr : MonoBehaviour
                 button1.SetActive(false);
                 button2.SetActive(false);
                 dialogueBox.SetActive(true);
+                playerMarkerRed.SetActive(false);
+                playerMarkerBlue.SetActive(false);
+                playerMarkerGreen.SetActive(false);
                 break;
             }
             Destroy(GameObject.Find(deck[i]));
@@ -926,46 +941,81 @@ public class Local3PHandlerScr : MonoBehaviour
         ShuffleDeck(tieDeck);
         for (int i = 0; i < 52; i++)
         {
-            if (i % 2 == 0)
+            if (i == 0 || i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21 || i == 24 || i == 27 || i == 30 || i == 33 || i == 36 || i == 39 || i == 42 || i == 45 || i == 48 || i == 51)
             {
-                GameObject tieCard = Instantiate(cardPrefab, new Vector3(540, 500, 0), Quaternion.identity);
+                GameObject tieCard = Instantiate(cardPrefab, new Vector3(540, 300, 0), Quaternion.identity);
                 tieCard.name = tieDeck[i];
+                if (i != 0)
+                {
+                    Destroy(GameObject.Find(tieDeck[i - 3]));
+                }
+            }
+            else if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19 || i == 22 || i == 25 || i == 28 || i == 31 || i == 34 || i == 37 || i == 40 || i == 43 || i == 46 || i == 49 || i == 52)
+            {
+                GameObject tieCard = Instantiate(cardPrefab, new Vector3(900, 1200, 0), Quaternion.identity);
+                tieCard.name = tieDeck[i];
+                if (i != 1)
+                {
+                    Destroy(GameObject.Find(tieDeck[i - 3]));
+                }
             }
             else
             {
-                GameObject tieCard = Instantiate(cardPrefab, new Vector3(540, 1500, 0), Quaternion.identity);
+                GameObject tieCard = Instantiate(cardPrefab, new Vector3(180, 1200, 0), Quaternion.identity);
                 tieCard.name = tieDeck[i];
+                if (i != 2)
+                {
+                    Destroy(GameObject.Find(tieDeck[i - 3]));
+                }
             }
             GameObject.Find(tieDeck[i]).GetComponent<Seeable>().faceUp = true;
             yield return new WaitForSeconds(0.8f);
             if (tieDeck[i][0] == 'A')
             {
-                if (i % 2 == 0)
+                playerMarkerRed.SetActive(false);
+                playerMarkerBlue.SetActive(false);
+                playerMarkerGreen.SetActive(false);
+                if (i == 0 || i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21 || i == 24 || i == 27 || i == 30 || i == 33 || i == 36 || i == 39 || i == 42 || i == 45 || i == 48 || i == 51)
+                {
+                    dialogueText.GetComponent<Text>().text = "Red is riding the bus, are you ready?";
+                }
+                else if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19 || i == 22 || i == 25 || i == 28 || i == 31 || i == 34 || i == 37 || i == 40 || i == 43 || i == 46 || i == 49 || i == 52)
                 {
                     dialogueText.GetComponent<Text>().text = "Blue is riding the bus, are you ready?";
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Red is riding the bus, are you ready?";
+                    dialogueText.GetComponent<Text>().text = "Green is riding the bus, are you ready?";
                 }
                 continueButton.SetActive(true);
                 button1.SetActive(false);
                 button2.SetActive(false);
-                Destroy(GameObject.Find(tieDeck[i - 1]));
-                Destroy(GameObject.Find(tieDeck[i]));
+                if (i > 1)
+                {
+                    for (int j = i - 3; j <= i; j++)
+                    {
+                        Destroy(GameObject.Find(tieDeck[j]));
+                    }
+                }
+                else if (i == 1)
+                {
+                    Destroy(GameObject.Find(tieDeck[i]));
+                    Destroy(GameObject.Find(tieDeck[i-1]));
+                }
+                else
+                {
+                    Destroy(GameObject.Find(tieDeck[i]));
+                }
                 busTieBox.SetActive(false);
                 dialogueBox.SetActive(true);
                 break;
-            }
-            if (i > 0)
-            {
-                Destroy(GameObject.Find(tieDeck[i - 1]));
             }
         }
     }
 
     public void RideTheBus()
     {
+        
         busDeck = GenerateDeck();
         ShuffleDeck(busDeck);
         SetUpBus();
@@ -1268,6 +1318,7 @@ public class Local3PHandlerScr : MonoBehaviour
         higherButton.SetActive(false);
         lowerButton.SetActive(false);
         rideBusBox.SetActive(false);
+
         dialogueText.GetComponent<Text>().text = "You beat the bus! Play again?";
         dialogueBox.SetActive(true);
         continueButton.SetActive(false);
@@ -1304,6 +1355,8 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 GameObject.Find(deck[i]).transform.Rotate(0f, 0f, 90f);
             }
+            playerMarkerRed.transform.Rotate(0f, 0f, 90f);
+            playerMarkerBlue.transform.Rotate(0f, 0f, 90f);
         }
         else if (player == 1)
         {
@@ -1315,6 +1368,8 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 GameObject.Find(deck[i]).transform.Rotate(0f, 0f, 90f);
             }
+            playerMarkerRed.transform.Rotate(0f, 0f, 90f);
+            playerMarkerGreen.transform.Rotate(0f, 0f, 90f);
         }
         else if (player == 3)
         {
@@ -1322,11 +1377,17 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 GameObject.Find(deck[i]).transform.Rotate(0f, 0f, 90f);
             }
+            playerMarkerGreen.transform.Rotate(0f, 0f, 90f);
+            playerMarkerBlue.transform.Rotate(0f, 0f, 90f);
         }
     }
 
     public void ChangeCardPlacements()
     {
+        Vector3 tempPlayerMarkerPosition = playerMarkerRed.transform.position;
+        playerMarkerRed.transform.position = playerMarkerGreen.transform.position;
+        playerMarkerGreen.transform.position = playerMarkerBlue.transform.position;
+        playerMarkerBlue.transform.position = tempPlayerMarkerPosition;
 
         Vector3 tempCardPosition = GameObject.Find(deck[0]).GetComponent<TransformCardPosition>().cardPos;
         GameObject.Find(deck[0]).transform.position = new Vector3(GameObject.Find(deck[8]).GetComponent<TransformCardPosition>().cardPos.x, GameObject.Find(deck[8]).GetComponent<TransformCardPosition>().cardPos.y, GameObject.Find(deck[8]).GetComponent<TransformCardPosition>().cardPos.z);
