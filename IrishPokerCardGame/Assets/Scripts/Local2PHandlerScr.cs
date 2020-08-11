@@ -40,6 +40,8 @@ public class Local2PHandlerScr : MonoBehaviour
     public GameObject rideBusBox;
     public GameObject rideBusText;
     public GameObject busTieBox;
+    public GameObject playerMarkerRed;
+    public GameObject playerMarkerBlue;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +66,8 @@ public class Local2PHandlerScr : MonoBehaviour
         rideBusBox.SetActive(false);
         busTieBox = GameObject.Find("BusTieBox");
         busTieBox.SetActive(false);
+        playerMarkerRed = GameObject.Find("PlayerColorMarkerRed");
+        playerMarkerBlue = GameObject.Find("PlayerColorMarkerBlue");
     }
 
     public static List<string> GenerateDeck()
@@ -684,6 +688,8 @@ public class Local2PHandlerScr : MonoBehaviour
                 continueButton.SetActive(true);
                 button1.SetActive(false);
                 button2.SetActive(false);
+                playerMarkerRed.SetActive(false);
+                playerMarkerBlue.SetActive(false);
                 dialogueBox.SetActive(true);
                 break;
             }
@@ -698,6 +704,8 @@ public class Local2PHandlerScr : MonoBehaviour
                 continueButton.SetActive(true);
                 button1.SetActive(false);
                 button2.SetActive(false);
+                playerMarkerRed.SetActive(false);
+                playerMarkerBlue.SetActive(false);
                 dialogueBox.SetActive(true);
                 break;
             }
@@ -741,6 +749,8 @@ public class Local2PHandlerScr : MonoBehaviour
                 continueButton.SetActive(true);
                 button1.SetActive(false);
                 button2.SetActive(false);
+                playerMarkerRed.SetActive(false);
+                playerMarkerBlue.SetActive(false);
                 Destroy(GameObject.Find(tieDeck[i - 1]));
                 Destroy(GameObject.Find(tieDeck[i]));
                 busTieBox.SetActive(false);
@@ -1088,6 +1098,9 @@ public class Local2PHandlerScr : MonoBehaviour
 
     public void ChangeCardPlacements()
     {
+        Vector3 tempPlayerMarkerPosition = playerMarkerRed.transform.position;
+        playerMarkerRed.transform.position = playerMarkerBlue.transform.position;
+        playerMarkerBlue.transform.position = tempPlayerMarkerPosition;
 
         Vector3 tempCardPosition = GameObject.Find(deck[0]).GetComponent<TransformCardPosition>().cardPos;
         GameObject.Find(deck[0]).transform.position = new Vector3(GameObject.Find(deck[4]).GetComponent<TransformCardPosition>().cardPos.x, GameObject.Find(deck[4]).GetComponent<TransformCardPosition>().cardPos.y, GameObject.Find(deck[4]).GetComponent<TransformCardPosition>().cardPos.z);
