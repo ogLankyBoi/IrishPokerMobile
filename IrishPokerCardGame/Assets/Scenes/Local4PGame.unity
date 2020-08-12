@@ -396,6 +396,7 @@ MonoBehaviour:
   continueButton: {fileID: 0}
   higherButton: {fileID: 0}
   lowerButton: {fileID: 0}
+  inGameSettingsButton: {fileID: 0}
   dialogueText: {fileID: 0}
   dialogueBox: {fileID: 0}
   inGameOptions: {fileID: 2030373996}
@@ -618,7 +619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -175, y: 375}
+  m_AnchoredPosition: {x: -175, y: 175}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &383254806
@@ -2012,8 +2013,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -360}
-  m_SizeDelta: {x: 360, y: 90}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: 360, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1247287097
 MonoBehaviour:
@@ -3190,8 +3191,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 95.30003}
-  m_SizeDelta: {x: 450, y: 850.00006}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 450, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2038852022
 GameObject:

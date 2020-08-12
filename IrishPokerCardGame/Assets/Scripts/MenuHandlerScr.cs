@@ -24,10 +24,10 @@ public class MenuHandlerScr : MonoBehaviour
         sceneChanger.SceneLoad("LocalPlayMenu");
     }
 
-    public void OnSettingsButton()
-    {
-        sceneChanger.SceneLoad("SettingsMenu");
-    }
+    //public void OnSettingsButton()
+    //{
+     //   sceneChanger.SceneLoad("SettingsMenu");
+    //}
 
     public void OnHowToButton()
     {
