@@ -21,7 +21,7 @@ public class MenuHandlerScr : MonoBehaviour
 
     public void OnPlayButton()
     {
-        sceneChanger.SceneLoad("PlayMenu");
+        sceneChanger.SceneLoad("LocalPlayMenu");
     }
 
     public void OnSettingsButton()

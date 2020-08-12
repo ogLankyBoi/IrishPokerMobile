@@ -33,6 +33,7 @@ public class Local5PHandlerScr : MonoBehaviour
     public GameObject continueButton;
     public GameObject higherButton;
     public GameObject lowerButton;
+    public GameObject inGameSettingsButton;
 
     public GameObject dialogueText;
     public GameObject dialogueBox;
@@ -239,6 +240,7 @@ public class Local5PHandlerScr : MonoBehaviour
         continueButton = GameObject.Find("ContinueButton");
         higherButton = GameObject.Find("HigherButton");
         lowerButton = GameObject.Find("LowerButton");
+        inGameSettingsButton = GameObject.Find("InGameSettingsButton");
 
         button3.SetActive(false);
         button4.SetActive(false);
@@ -1193,6 +1195,7 @@ public class Local5PHandlerScr : MonoBehaviour
 
     IEnumerator decideWhoRidesBus()
     {
+        inGameSettingsButton.SetActive(false);
         dialogueBox.SetActive(false);
         List<string> player1Cards = new List<string>();
         List<string> player2Cards = new List<string>();
@@ -1395,7 +1398,7 @@ public class Local5PHandlerScr : MonoBehaviour
             }
             else if (i == 2 || i == 7 || i == 12 || i == 17 || i == 22 || i == 27 || i == 32 || i == 37 || i == 42 || i == 47 || i == 52)
             {
-                GameObject tieCard = Instantiate(cardPrefab, new Vector3(180, 1400, 0), Quaternion.identity);
+                GameObject tieCard = Instantiate(cardPrefab, new Vector3(180, 1350, 0), Quaternion.identity);
                 tieCard.name = tieDeck[i];
                 if (i != 2)
                 {
@@ -1404,7 +1407,7 @@ public class Local5PHandlerScr : MonoBehaviour
             }
             else if (i == 3 || i == 8 || i == 13 || i == 18 || i == 23 || i == 28 || i == 33 || i == 38 || i == 43 || i == 48)
             {
-                GameObject tieCard = Instantiate(cardPrefab, new Vector3(900, 1400, 0), Quaternion.identity);
+                GameObject tieCard = Instantiate(cardPrefab, new Vector3(900, 1350, 0), Quaternion.identity);
                 tieCard.name = tieDeck[i];
                 if (i != 3)
                 {
@@ -1490,7 +1493,7 @@ public class Local5PHandlerScr : MonoBehaviour
 
     public void RideTheBus()
     {
-
+        inGameSettingsButton.SetActive(true);
         busDeck = GenerateDeck();
         ShuffleDeck(busDeck);
         SetUpBus();

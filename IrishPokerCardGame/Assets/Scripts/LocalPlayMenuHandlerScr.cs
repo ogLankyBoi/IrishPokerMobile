@@ -105,13 +105,13 @@ public class LocalPlayMenuHandlerScr : MonoBehaviour
                 sceneChanger.SceneLoad("Local5PGame");
                 break;
             default:
-                //sceneChanger.SceneLoad("Local6PGame");
+                sceneChanger.SceneLoad("Local6PGame");
                 break;
         }
     }
 
     public void OnBackButton()
     {
-        sceneChanger.SceneLoad("PlayMenu");
+        sceneChanger.SceneLoad("MainMenu");
     }
 }

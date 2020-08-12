@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Local4PGame.unity
     guid: 39b8de5683f869e49b1d038f67b44655
+  - enabled: 1
+    path: Assets/Scenes/Local5PGame.unity
+    guid: c5da8cbe05e8e1742a86ccab04809441
+  - enabled: 1
+    path: Assets/Scenes/Local6PGame.unity
+    guid: f93267b6cf2b9cb4e84a60ae61c6b98c
   m_configObjects: {}
