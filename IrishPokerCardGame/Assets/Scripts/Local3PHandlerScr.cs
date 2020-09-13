@@ -44,6 +44,15 @@ public class Local3PHandlerScr : MonoBehaviour
     public GameObject playerMarkerRed;
     public GameObject playerMarkerBlue;
     public GameObject playerMarkerGreen;
+    public GameObject playerScore1Text;
+    public GameObject playerScore2Text;
+    public GameObject playerScore3Text;
+    public int playerScore1Val = 0;
+    public int playerScore2Val = 0;
+    public int playerScore3Val = 0;
+    public GameObject scoreBackground1;
+    public GameObject scoreBackground2;
+    public GameObject scoreBackground3;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +80,12 @@ public class Local3PHandlerScr : MonoBehaviour
         playerMarkerRed = GameObject.Find("PlayerColorMarkerRed");
         playerMarkerBlue = GameObject.Find("PlayerColorMarkerBlue");
         playerMarkerGreen = GameObject.Find("PlayerColorMarkerGreen");
+        playerScore1Text = GameObject.Find("PlayerScore1");
+        playerScore2Text = GameObject.Find("PlayerScore2");
+        playerScore3Text = GameObject.Find("PlayerScore3");
+        scoreBackground1 = GameObject.Find("ScoreBackground1");
+        scoreBackground2 = GameObject.Find("ScoreBackground2");
+        scoreBackground3 = GameObject.Find("ScoreBackground3");
     }
 
     public static List<string> GenerateDeck()
@@ -175,7 +190,7 @@ public class Local3PHandlerScr : MonoBehaviour
         yOffset = 0;
         for (int i = 4; i < 8; i++)
         {
-            GameObject newCard = Instantiate(cardPrefab, new Vector3(20, 1200 + yOffset, zOffset), Quaternion.identity);
+            GameObject newCard = Instantiate(cardPrefab, new Vector3(80, 1200 + yOffset, zOffset), Quaternion.identity);
             newCard.name = deck[i];
             GameObject.Find(deck[i]).transform.Rotate(0f, 0f, 90f);
 
@@ -188,7 +203,7 @@ public class Local3PHandlerScr : MonoBehaviour
         for (int i = 8; i < 12; i++)
         {
             
-            GameObject newCard = Instantiate(cardPrefab, new Vector3(1060, 840 + yOffset, zOffset), Quaternion.identity);
+            GameObject newCard = Instantiate(cardPrefab, new Vector3(1000, 840 + yOffset, zOffset), Quaternion.identity);
             newCard.name = deck[i];
             GameObject.Find(deck[i]).transform.Rotate(0f, 0f, 90f);
 
@@ -289,22 +304,34 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[0][1] == 'D' || deck[0][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets a point.";
+                    playerScore2Val++;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val++;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get a point.";
+                    playerScore1Val++;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[0][1] == 'C' || deck[0][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets a point.";
+                    playerScore2Val++;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val++;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get a point.";
+                    playerScore1Val++;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -319,22 +346,34 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[4][1] == 'D' || deck[4][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets a point.";
+                    playerScore1Val++;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val++;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get a point.";
+                    playerScore2Val++;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[4][1] == 'C' || deck[4][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets a point.";
+                    playerScore1Val++;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val++;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get a point.";
+                    playerScore2Val++;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -349,22 +388,34 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[8][1] == 'D' || deck[8][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets a point.";
+                    playerScore1Val++;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val++;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get a point.";
+                    playerScore3Val++;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[8][1] == 'C' || deck[8][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out two drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets a point.";
+                    playerScore1Val++;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val++;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink two times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get a point.";
+                    playerScore3Val++;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -385,30 +436,46 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[0] < cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets two points.";
+                    playerScore2Val = playerScore2Val + 2;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val = playerScore3Val + 2;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else if (cardValue[0] > cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get two points.";
+                    playerScore1Val = playerScore1Val + 2;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[0] > cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets two points.";
+                    playerScore2Val = playerScore2Val + 2;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val = playerScore3Val + 2;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else if (cardValue[0] < cardValue[1])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get two points.";
+                    playerScore1Val = playerScore1Val + 2;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -424,30 +491,48 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[4] < cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets two points.";
+                    playerScore1Val = playerScore1Val + 2;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val = playerScore3Val + 2;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else if (cardValue[4] > cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get two points.";
+                    playerScore2Val = playerScore2Val + 2;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[4] > cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets two points.";
+                    playerScore1Val = playerScore1Val + 2;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val = playerScore3Val + 2;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else if (cardValue[4] < cardValue[5])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get two points.";
+                    playerScore2Val = playerScore2Val + 2;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -462,30 +547,47 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[8] < cardValue[9])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets two points.";
+                    playerScore1Val = playerScore1Val + 2;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val = playerScore2Val + 2;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else if (cardValue[8] > cardValue[9])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get two points.";
+                    playerScore3Val = playerScore3Val + 2;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
+
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get four points.";
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[8] > cardValue[9])
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out four drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets two points.";
+                    playerScore1Val = playerScore1Val + 2;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val = playerScore2Val + 2;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else if (cardValue[8] < cardValue[9])
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink four times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get two points.";
+                    playerScore3Val = playerScore3Val + 2;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get four points.";
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -519,30 +621,46 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[2] > highCard || cardValue[2] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets three points.";
+                    playerScore2Val = playerScore2Val + 3;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val = playerScore3Val + 3;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else if (cardValue[2] == highCard || cardValue[2] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get six points.";
+                    playerScore1Val = playerScore1Val + 6;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get three points.";
+                    playerScore1Val = playerScore1Val + 3;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[2] < highCard && cardValue[2] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets three points.";
+                    playerScore2Val = playerScore2Val + 3;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val = playerScore3Val + 3;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else if (cardValue[2] == highCard || cardValue[2] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get six points.";
+                    playerScore1Val = playerScore1Val + 6;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get three points.";
+                    playerScore1Val = playerScore1Val + 3;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -568,30 +686,46 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[6] > highCard || cardValue[6] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets three points.";
+                    playerScore1Val = playerScore1Val + 3;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val = playerScore3Val + 3;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else if (cardValue[6] == highCard || cardValue[6] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get six points.";
+                    playerScore2Val = playerScore2Val + 6;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get three points.";
+                    playerScore2Val = playerScore2Val + 3;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[6] < highCard && cardValue[6] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets three points.";
+                    playerScore1Val = playerScore1Val + 3;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val = playerScore3Val + 3;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else if (cardValue[6] == highCard || cardValue[6] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get six points.";
+                    playerScore2Val = playerScore2Val + 6;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get three points.";
+                    playerScore2Val = playerScore2Val + 3;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -617,30 +751,46 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (cardValue[10] > highCard || cardValue[10] < lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets three points.";
+                    playerScore1Val = playerScore1Val + 3;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val = playerScore2Val + 3;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else if (cardValue[10] == highCard || cardValue[10] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get six points.";
+                    playerScore3Val = playerScore3Val + 6;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get three points.";
+                    playerScore3Val = playerScore3Val + 3;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (cardValue[10] < highCard && cardValue[10] > lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out six drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets three points.";
+                    playerScore1Val = playerScore1Val + 3;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val = playerScore2Val + 3;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else if (cardValue[10] == highCard || cardValue[10] == lowCard)
                 {
-                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. Drink twelve times.";
+                    dialogueText.GetComponent<Text>().text = "Big oof, they have the same value. You get six points.";
+                    playerScore3Val = playerScore3Val + 6;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink six times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get three points.";
+                    playerScore3Val = playerScore3Val + 3;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -663,44 +813,68 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[3][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[3][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             else if (buttonNum == 3)
             {
                 if (deck[3][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             else if (buttonNum == 4)
             {
                 if (deck[3][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -717,44 +891,68 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[7][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[7][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
             }
             else if (buttonNum == 3)
             {
                 if (deck[7][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
             }
             else if (buttonNum == 4)
             {
                 if (deck[7][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -771,44 +969,68 @@ public class Local3PHandlerScr : MonoBehaviour
             {
                 if (deck[11][1] == 'H')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             else if (buttonNum == 2)
             {
                 if (deck[11][1] == 'D')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             else if (buttonNum == 3)
             {
                 if (deck[11][1] == 'C')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             else if (buttonNum == 4)
             {
                 if (deck[11][1] == 'S')
                 {
-                    dialogueText.GetComponent<Text>().text = "Correct! Give out eight drinks.";
+                    dialogueText.GetComponent<Text>().text = "Correct! Everyone else gets four points.";
+                    playerScore1Val = playerScore1Val + 4;
+                    playerScore1Text.GetComponent<Text>().text = playerScore1Val.ToString();
+                    playerScore2Val = playerScore2Val + 4;
+                    playerScore2Text.GetComponent<Text>().text = playerScore2Val.ToString();
                 }
                 else
                 {
-                    dialogueText.GetComponent<Text>().text = "You are wrong. Drink eight times.";
+                    dialogueText.GetComponent<Text>().text = "You are wrong. You get four points.";
+                    playerScore3Val = playerScore3Val + 4;
+                    playerScore3Text.GetComponent<Text>().text = playerScore3Val.ToString();
                 }
             }
             button1.SetActive(false);
@@ -823,195 +1045,250 @@ public class Local3PHandlerScr : MonoBehaviour
 
     IEnumerator decideWhoRidesBus()
     {
-        inGameSettingsButton.SetActive(false);
-        dialogueBox.SetActive(false);
-        List<string> player1Cards = new List<string>();
-        List<string> player2Cards = new List<string>();
-        List<string> player3Cards = new List<string>();
         round++;
-
-        for (int i = 0; i < 4; i++)
+        dialogueBox.SetActive(false);
+        scoreBackground1.SetActive(false);
+        scoreBackground2.SetActive(false);
+        scoreBackground3.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 12; i++)
         {
-            player1Cards.Add(deck[i]);
-        }
-        for (int i = 4; i < 8; i++)
-        {
-            player2Cards.Add(deck[i]);
-        }
-        for (int i = 8; i < 12; i++)
-        {
-            player3Cards.Add(deck[i]);
-        }
-
-        for (int i = 12; i < 52; i++)
-        {
-            GameObject middleCard = Instantiate(cardPrefab, new Vector3(540, 960, 0), Quaternion.identity);
-            middleCard.name = deck[i];
-            middleCard.GetComponent<Seeable>().faceUp = true;
-            yield return new WaitForSeconds(0.8f);
-            for (int j = 0; j < 12; j++)
-            {
-                if (deck[i][0] == deck[j][0] && GameObject.Find(deck[j]) != null)
-                {
-                    Destroy(GameObject.Find(deck[j]));
-                    if (j <= 3)
-                    {
-                        player1Cards.Remove(deck[j]);
-                    }
-                    else if (j >= 4 && j <= 7)
-                    {
-                        player2Cards.Remove(deck[j]);
-                    }
-                    else if (j >= 8)
-                    {
-                        player3Cards.Remove(deck[j]);
-                    }
-                }
-            }
-            if ((player1Cards.Count == 0 && player2Cards.Count == 0 && player3Cards.Count == 0) || i == 51)
-            {
-                Destroy(GameObject.Find(deck[i]));
-                for (int j = 0; j < 12; j++)
-                {
-                    Destroy(GameObject.Find(deck[j]));
-                }
-                StartCoroutine(BusTie());
-                break;
-            }
-            else if (player1Cards.Count == 0 && player2Cards.Count == 0)
-            {
-                Destroy(GameObject.Find(deck[i]));
-                for (int j = 0; j < 12; j++)
-                {
-                    Destroy(GameObject.Find(deck[j]));
-                }
-                dialogueText.GetComponent<Text>().text = "Green is riding the bus, are you ready?";
-                continueButton.SetActive(true);
-                button1.SetActive(false);
-                button2.SetActive(false);
-                dialogueBox.SetActive(true);
-                playerMarkerRed.SetActive(false);
-                playerMarkerBlue.SetActive(false);
-                playerMarkerGreen.SetActive(false);
-                break;
-            }
-            else if (player1Cards.Count == 0 && player3Cards.Count == 0)
-            {
-                Destroy(GameObject.Find(deck[i]));
-                for (int j = 0; j < 12; j++)
-                {
-                    Destroy(GameObject.Find(deck[j]));
-                }
-                dialogueText.GetComponent<Text>().text = "Blue is riding the bus, are you ready?";
-                continueButton.SetActive(true);
-                button1.SetActive(false);
-                button2.SetActive(false);
-                dialogueBox.SetActive(true);
-                playerMarkerRed.SetActive(false);
-                playerMarkerBlue.SetActive(false);
-                playerMarkerGreen.SetActive(false);
-                break;
-            }
-            else if (player2Cards.Count == 0 && player3Cards.Count == 0)
-            {
-                Destroy(GameObject.Find(deck[i]));
-                for (int j = 0; j < 12; j++)
-                {
-                    Destroy(GameObject.Find(deck[j]));
-                }
-                dialogueText.GetComponent<Text>().text = "Red is riding the bus, are you ready?";
-                continueButton.SetActive(true);
-                button1.SetActive(false);
-                button2.SetActive(false);
-                dialogueBox.SetActive(true);
-                playerMarkerRed.SetActive(false);
-                playerMarkerBlue.SetActive(false);
-                playerMarkerGreen.SetActive(false);
-                break;
-            }
             Destroy(GameObject.Find(deck[i]));
-            yield return new WaitForSeconds(0.5f);
+        }
+        if ((playerScore1Val == playerScore2Val && playerScore1Val == playerScore3Val) || (playerScore1Val == playerScore2Val && playerScore1Val > playerScore3Val) || (playerScore1Val == playerScore3Val && playerScore1Val > playerScore2Val) || (playerScore3Val == playerScore2Val && playerScore2Val > playerScore1Val))
+        {
+            StartCoroutine(BusTie());
+        }
+        else
+        {
+            playerMarkerRed.SetActive(false);
+            playerMarkerBlue.SetActive(false);
+            playerMarkerGreen.SetActive(false);
+            RideTheBus();
         }
     }
 
     IEnumerator BusTie()
     {
-        int playerBus = 0;
         busTieBox.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         List<string> tieDeck;
         tieDeck = GenerateDeck();
         ShuffleDeck(tieDeck);
-        for (int i = 0; i < 52; i++)
+        if (playerScore1Val == playerScore2Val && playerScore1Val == playerScore3Val)
         {
-            if (i == 0 || i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21 || i == 24 || i == 27 || i == 30 || i == 33 || i == 36 || i == 39 || i == 42 || i == 45 || i == 48 || i == 51)
+            for (int i = 0; i < 52; i++)
             {
-                GameObject tieCard = Instantiate(cardPrefab, new Vector3(540, 300, 0), Quaternion.identity);
-                tieCard.name = tieDeck[i];
-                if (i != 0)
-                {
-                    Destroy(GameObject.Find(tieDeck[i - 3]));
-                }
-            }
-            else if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19 || i == 22 || i == 25 || i == 28 || i == 31 || i == 34 || i == 37 || i == 40 || i == 43 || i == 46 || i == 49 || i == 52)
-            {
-                GameObject tieCard = Instantiate(cardPrefab, new Vector3(180, 1200, 0), Quaternion.identity);
-                tieCard.name = tieDeck[i];
-                if (i != 1)
-                {
-                    Destroy(GameObject.Find(tieDeck[i - 3]));
-                }
-            }
-            else
-            {
-                GameObject tieCard = Instantiate(cardPrefab, new Vector3(900, 1200, 0), Quaternion.identity);
-                tieCard.name = tieDeck[i];
-                if (i != 2)
-                {
-                    Destroy(GameObject.Find(tieDeck[i - 3]));
-                }
-            }
-            GameObject.Find(tieDeck[i]).GetComponent<Seeable>().faceUp = true;
-            yield return new WaitForSeconds(0.8f);
-            if (tieDeck[i][0] == 'A')
-            {
-                playerMarkerRed.SetActive(false);
-                playerMarkerBlue.SetActive(false);
-                playerMarkerGreen.SetActive(false);
                 if (i == 0 || i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21 || i == 24 || i == 27 || i == 30 || i == 33 || i == 36 || i == 39 || i == 42 || i == 45 || i == 48 || i == 51)
                 {
-                    dialogueText.GetComponent<Text>().text = "Red is riding the bus, are you ready?";
+                    GameObject tieCard = Instantiate(cardPrefab, new Vector3(540, 300, 0), Quaternion.identity);
+                    tieCard.name = tieDeck[i];
+                    if (i != 0)
+                    {
+                        Destroy(GameObject.Find(tieDeck[i - 3]));
+                    }
                 }
                 else if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19 || i == 22 || i == 25 || i == 28 || i == 31 || i == 34 || i == 37 || i == 40 || i == 43 || i == 46 || i == 49 || i == 52)
                 {
-                    dialogueText.GetComponent<Text>().text = "Blue is riding the bus, are you ready?";
-                }
-                else
-                {
-                    dialogueText.GetComponent<Text>().text = "Green is riding the bus, are you ready?";
-                }
-                continueButton.SetActive(true);
-                button1.SetActive(false);
-                button2.SetActive(false);
-                if (i > 1)
-                {
-                    for (int j = i - 3; j <= i; j++)
+                    GameObject tieCard = Instantiate(cardPrefab, new Vector3(180, 1050, 0), Quaternion.identity);
+                    tieCard.name = tieDeck[i];
+                    if (i != 1)
                     {
-                        Destroy(GameObject.Find(tieDeck[j]));
+                        Destroy(GameObject.Find(tieDeck[i - 3]));
                     }
                 }
-                else if (i == 1)
+                else
                 {
-                    Destroy(GameObject.Find(tieDeck[i]));
-                    Destroy(GameObject.Find(tieDeck[i-1]));
+                    GameObject tieCard = Instantiate(cardPrefab, new Vector3(900, 1050, 0), Quaternion.identity);
+                    tieCard.name = tieDeck[i];
+                    if (i != 2)
+                    {
+                        Destroy(GameObject.Find(tieDeck[i - 3]));
+                    }
+                }
+                GameObject.Find(tieDeck[i]).GetComponent<Seeable>().faceUp = true;
+                yield return new WaitForSeconds(0.8f);
+                if (tieDeck[i][0] == 'A')
+                {
+                    playerMarkerRed.SetActive(false);
+                    playerMarkerBlue.SetActive(false);
+                    playerMarkerGreen.SetActive(false);
+                    if (i == 0 || i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21 || i == 24 || i == 27 || i == 30 || i == 33 || i == 36 || i == 39 || i == 42 || i == 45 || i == 48 || i == 51)
+                    {
+                        dialogueText.GetComponent<Text>().text = "Red is riding the bus, are you ready?";
+                    }
+                    else if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19 || i == 22 || i == 25 || i == 28 || i == 31 || i == 34 || i == 37 || i == 40 || i == 43 || i == 46 || i == 49 || i == 52)
+                    {
+                        dialogueText.GetComponent<Text>().text = "Blue is riding the bus, are you ready?";
+                    }
+                    else
+                    {
+                        dialogueText.GetComponent<Text>().text = "Green is riding the bus, are you ready?";
+                    }
+                    continueButton.SetActive(true);
+                    button1.SetActive(false);
+                    button2.SetActive(false);
+                    if (i > 1)
+                    {
+                        for (int j = i - 3; j <= i; j++)
+                        {
+                            Destroy(GameObject.Find(tieDeck[j]));
+                        }
+                    }
+                    else if (i == 1)
+                    {
+                        Destroy(GameObject.Find(tieDeck[i]));
+                        Destroy(GameObject.Find(tieDeck[i - 1]));
+                    }
+                    else
+                    {
+                        Destroy(GameObject.Find(tieDeck[i]));
+                    }
+                    busTieBox.SetActive(false);
+                    dialogueBox.SetActive(true);
+                    break;
+                }
+            }
+        }
+        else if (playerScore1Val == playerScore2Val && playerScore1Val > playerScore3Val)
+        {
+            for (int i = 0; i < 52; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    GameObject tieCard = Instantiate(cardPrefab, new Vector3(540, 500, 0), Quaternion.identity);
+                    tieCard.name = tieDeck[i];
                 }
                 else
                 {
-                    Destroy(GameObject.Find(tieDeck[i]));
+                    GameObject tieCard = Instantiate(cardPrefab, new Vector3(180, 1050, 0), Quaternion.identity);
+                    tieCard.name = tieDeck[i];
                 }
-                busTieBox.SetActive(false);
-                dialogueBox.SetActive(true);
-                break;
+                GameObject.Find(tieDeck[i]).GetComponent<Seeable>().faceUp = true;
+                yield return new WaitForSeconds(0.8f);
+                if (tieDeck[i][0] == 'A')
+                {
+                    if (i % 2 == 0)
+                    {
+                        dialogueText.GetComponent<Text>().text = "Red is riding the bus, are you ready?";
+                    }
+                    else
+                    {
+                        dialogueText.GetComponent<Text>().text = "Blue is riding the bus, are you ready?";
+                    }
+                    continueButton.SetActive(true);
+                    button1.SetActive(false);
+                    button2.SetActive(false);
+                    playerMarkerRed.SetActive(false);
+                    playerMarkerBlue.SetActive(false);
+                    playerMarkerGreen.SetActive(false);
+                    if (i > 0)
+                    {
+                        Destroy(GameObject.Find(tieDeck[i - 1]));
+                    }
+                    Destroy(GameObject.Find(tieDeck[i]));
+                    busTieBox.SetActive(false);
+                    dialogueBox.SetActive(true);
+                    break;
+                }
+                if (i > 0)
+                {
+                    Destroy(GameObject.Find(tieDeck[i - 1]));
+                }
+            }
+        }
+        else if (playerScore1Val == playerScore3Val && playerScore1Val > playerScore2Val)
+        {
+            for (int i = 0; i < 52; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    GameObject tieCard = Instantiate(cardPrefab, new Vector3(540, 500, 0), Quaternion.identity);
+                    tieCard.name = tieDeck[i];
+                }
+                else
+                {
+                    GameObject tieCard = Instantiate(cardPrefab, new Vector3(900, 1050, 0), Quaternion.identity);
+                    tieCard.name = tieDeck[i];
+                }
+                GameObject.Find(tieDeck[i]).GetComponent<Seeable>().faceUp = true;
+                yield return new WaitForSeconds(0.8f);
+                if (tieDeck[i][0] == 'A')
+                {
+                    if (i % 2 == 0)
+                    {
+                        dialogueText.GetComponent<Text>().text = "Red is riding the bus, are you ready?";
+                    }
+                    else
+                    {
+                        dialogueText.GetComponent<Text>().text = "Green is riding the bus, are you ready?";
+                    }
+                    continueButton.SetActive(true);
+                    button1.SetActive(false);
+                    button2.SetActive(false);
+                    playerMarkerRed.SetActive(false);
+                    playerMarkerBlue.SetActive(false);
+                    playerMarkerGreen.SetActive(false);
+                    if (i > 0)
+                    {
+                        Destroy(GameObject.Find(tieDeck[i - 1]));
+                    }
+                    Destroy(GameObject.Find(tieDeck[i]));
+                    busTieBox.SetActive(false);
+                    dialogueBox.SetActive(true);
+                    break;
+                }
+                if (i > 0)
+                {
+                    Destroy(GameObject.Find(tieDeck[i - 1]));
+                }
+            }
+        }
+        else if (playerScore2Val == playerScore3Val && playerScore2Val > playerScore1Val)
+        {
+            for (int i = 0; i < 52; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    GameObject tieCard = Instantiate(cardPrefab, new Vector3(180, 1050, 0), Quaternion.identity);
+                    tieCard.name = tieDeck[i];
+                }
+                else
+                {
+                    GameObject tieCard = Instantiate(cardPrefab, new Vector3(900, 1050, 0), Quaternion.identity);
+                    tieCard.name = tieDeck[i];
+                }
+                GameObject.Find(tieDeck[i]).GetComponent<Seeable>().faceUp = true;
+                yield return new WaitForSeconds(0.8f);
+                if (tieDeck[i][0] == 'A')
+                {
+                    if (i % 2 == 0)
+                    {
+                        dialogueText.GetComponent<Text>().text = "Blue is riding the bus, are you ready?";
+                    }
+                    else
+                    {
+                        dialogueText.GetComponent<Text>().text = "Green is riding the bus, are you ready?";
+                    }
+                    continueButton.SetActive(true);
+                    button1.SetActive(false);
+                    button2.SetActive(false);
+                    playerMarkerRed.SetActive(false);
+                    playerMarkerBlue.SetActive(false);
+                    playerMarkerGreen.SetActive(false);
+                    if (i > 0)
+                    {
+                        Destroy(GameObject.Find(tieDeck[i - 1]));
+                    }
+                    Destroy(GameObject.Find(tieDeck[i]));
+                    busTieBox.SetActive(false);
+                    dialogueBox.SetActive(true);
+                    break;
+                }
+                if (i > 0)
+                {
+                    Destroy(GameObject.Find(tieDeck[i - 1]));
+                }
             }
         }
     }
@@ -1217,42 +1494,12 @@ public class Local3PHandlerScr : MonoBehaviour
         }
         else if (currentBusValues[busRound] < currentBusValues[busRound - 1])
         {
-            if (busRound <= 4)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 1 times.";
-            }
-            else if (busRound <= 7)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 2 times.";
-            }
-            else if (busRound <= 9)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 3 times.";
-            }
-            else if (busRound <= 10)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 4 times.";
-            }
+            rideBusText.GetComponent<Text>().text = "Wrong. Try again.";
             ResetBus();
         }
         else
         {
-            if (busRound <= 4)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 2 times.";
-            }
-            else if (busRound <= 7)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 4 times.";
-            }
-            else if (busRound <= 9)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 6 times.";
-            }
-            else if (busRound <= 10)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 8 times.";
-            }
+            rideBusText.GetComponent<Text>().text = "Wrong. Try again.";
             ResetBus();
         }
     }
@@ -1271,42 +1518,12 @@ public class Local3PHandlerScr : MonoBehaviour
         }
         else if (currentBusValues[busRound] > currentBusValues[busRound - 1])
         {
-            if (busRound <= 4)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 1 times.";
-            }
-            else if (busRound <= 7)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 2 times.";
-            }
-            else if (busRound <= 9)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 3 times.";
-            }
-            else if (busRound <= 10)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 4 times.";
-            }
+            rideBusText.GetComponent<Text>().text = "Wrong. Try again.";
             ResetBus();
         }
         else
         {
-            if (busRound <= 4)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 2 times.";
-            }
-            else if (busRound <= 7)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 4 times.";
-            }
-            else if (busRound <= 9)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 6 times.";
-            }
-            else if (busRound <= 10)
-            {
-                rideBusText.GetComponent<Text>().text = "Wrong. Drink 8 times.";
-            }
+            rideBusText.GetComponent<Text>().text = "Wrong. Try again.";
             ResetBus();
         }
     }
@@ -1321,8 +1538,42 @@ public class Local3PHandlerScr : MonoBehaviour
         higherButton.SetActive(false);
         lowerButton.SetActive(false);
         rideBusBox.SetActive(false);
+        Dictionary<string, int> scores = new Dictionary<string, int>
+        {
+            ["Red"] = playerScore1Val,
+            ["Blue"] = playerScore2Val,
+            ["Green"] = playerScore3Val,
+        };
+        List<int> playerScores = new List<int>();
+        List<string> playerName = new List<string>();
+        List<int> playerRank = new List<int>();
+        playerScores.Add(playerScore1Val);
+        playerScores.Add(playerScore2Val);
+        playerScores.Add(playerScore3Val);
+        playerScores.Sort((a, b) => a.CompareTo(b));
+        int pastScore = 0;
 
-        dialogueText.GetComponent<Text>().text = "You beat the bus! Play again?";
+        int rank = 0;
+        foreach (var value in playerScores)
+        {
+            foreach (var k in scores.Keys)
+            {
+                if (pastScore == value)
+                {
+                    break;
+                }
+                if (scores[k] == value)
+                {
+                    playerName.Add(k);
+                    playerRank.Add(rank);
+                }
+            }
+            pastScore = value;
+            rank++;
+        }
+        string[] playerNames = playerName.ToArray();
+        int[] playerRanks = playerRank.ToArray();
+        dialogueText.GetComponent<Text>().text = "You beat the bus!\n\nPlayer Rankings\n" + playerNames[0] + " : " + playerRanks[0] + "\n" + playerNames[1] + " : " + playerRanks[1] + "\n" + playerNames[2] + " : " + playerRanks[2] + "\n\n Play again?";
         dialogueBox.SetActive(true);
         continueButton.SetActive(false);
         round++;
@@ -1391,6 +1642,11 @@ public class Local3PHandlerScr : MonoBehaviour
         playerMarkerRed.transform.position = playerMarkerGreen.transform.position;
         playerMarkerGreen.transform.position = playerMarkerBlue.transform.position;
         playerMarkerBlue.transform.position = tempPlayerMarkerPosition;
+
+        Vector3 tempScorePosition = scoreBackground1.transform.position;
+        scoreBackground1.transform.position = scoreBackground3.transform.position;
+        scoreBackground3.transform.position = scoreBackground2.transform.position;
+        scoreBackground2.transform.position = tempScorePosition;
 
         Vector3 tempCardPosition = GameObject.Find(deck[0]).GetComponent<TransformCardPosition>().cardPos;
         GameObject.Find(deck[0]).transform.position = new Vector3(GameObject.Find(deck[8]).GetComponent<TransformCardPosition>().cardPos.x, GameObject.Find(deck[8]).GetComponent<TransformCardPosition>().cardPos.y, GameObject.Find(deck[8]).GetComponent<TransformCardPosition>().cardPos.z);
@@ -1466,7 +1722,22 @@ public class Local3PHandlerScr : MonoBehaviour
             }
             else if (round == 5)
             {
-                dialogueText.GetComponent<Text>().text = "Ready to decide who is riding the bus?";
+                if (playerScore1Val > playerScore2Val && playerScore1Val > playerScore3Val)
+                {
+                    dialogueText.GetComponent<Text>().text = "Red lost! Ready to ride the bus?";
+                }
+                else if (playerScore2Val > playerScore1Val && playerScore2Val > playerScore3Val)
+                {
+                    dialogueText.GetComponent<Text>().text = "Blue lost! Ready to ride the bus?";
+                }
+                else if (playerScore3Val > playerScore1Val && playerScore3Val > playerScore2Val)
+                {
+                    dialogueText.GetComponent<Text>().text = "Green lost! Ready to ride the bus?";
+                }
+                else
+                {
+                    dialogueText.GetComponent<Text>().text = "It's a tie! Ready to decide who is riding the bus?";
+                }
             }
         }
 

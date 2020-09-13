@@ -6,20 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DisclaimerWarning.unity
-    guid: 6bca3d37aa3c2be47a8a037e33e30a83
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7bbe884b8fb8dc044bf804d9748a6106
-  - enabled: 1
-    path: Assets/Scenes/SettingsMenu.unity
+  - enabled: 0
+    path: Assets/Scenes/UnusedScenes/SettingsMenu.unity
     guid: 4c4212e86aa62e3408e04f9db9aa9596
   - enabled: 1
     path: Assets/Scenes/HowToPlay.unity
     guid: 7d1722fed7bfb7144b4739ac520b0703
   - enabled: 1
-    path: Assets/Scenes/OnePlayerGame.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/PlayMenu.unity
+    guid: c4311eb578e09c7499f7b3764e2b2ccb
   - enabled: 1
     path: Assets/Scenes/LocalPlayMenu.unity
     guid: 4a921ead973cee24a91a67e0fc962e6d
@@ -38,4 +35,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Local6PGame.unity
     guid: f93267b6cf2b9cb4e84a60ae61c6b98c
+  - enabled: 1
+    path: Assets/Scenes/CreateOnlineGame.unity
+    guid: 2ae60e065baaa604c9a7b03037261966
+  - enabled: 1
+    path: Assets/Scenes/JoinOnlineGame.unity
+    guid: eba852f4f1fae894d93bbd5383d83d61
+  - enabled: 1
+    path: Assets/Scenes/LobbyOnline.unity
+    guid: b0f28be86f035ee498bf361d3b564e54
   m_configObjects: {}

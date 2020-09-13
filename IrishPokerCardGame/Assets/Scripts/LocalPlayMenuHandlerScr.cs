@@ -112,6 +112,6 @@ public class LocalPlayMenuHandlerScr : MonoBehaviour
 
     public void OnBackButton()
     {
-        sceneChanger.SceneLoad("MainMenu");
+        sceneChanger.SceneLoad("PlayMenu");
     }
 }
